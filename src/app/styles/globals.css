@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Chevalier Zyy';
+  src: url('/fonts/Chevalier Open DC D Regular.woff2') format('woff2');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Chevalier Zyy';
+  src: url('/fonts/Chevalier Open DC D Regular.woff2') format('woff2');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Chevalier Zyy';
+  src: url('/fonts/Chevalier Open DC D Regular.woff2') format('woff2');
+  font-weight: 600;
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+    font-family: 'Chevalier Zyy';
+}
+
+/**
+* Homepage
+*/
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-blink {
+  animation: blink 1.5s infinite;
+}
+
+/**
+* Basket
+*/
+@keyframes slideFromRight {
+  from { transform: translateX(-100%) }
+  to { transform: translateX(0) }
+}
+
+.animate-slideFromRight {
+  animation: slideFromRight 0.4s ease forwards;
+}
+
+@keyframes slideOutToRight {
+  from { transform: translateX(0) }
+  to { transform: translateX(100%) }
+}
+
+.animate-slideOutToRight {
+  animation: slideOutToRight 2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 2s ease forwards;
+}
