@@ -24,7 +24,7 @@ type Inputs = {
     image: Array<File>,
 }
 
-const uploadImages = async (file: File) => {
+const uploadImages = async (file: File, cat: string ) => {
     const createFileName = () => {
         const timestamp = Date.now();
         const randomString = Math.random().toString(36).substring(2, 8);
@@ -32,7 +32,7 @@ const uploadImages = async (file: File) => {
     }
 
     const fileName = createFileName();
-    const storageRef = ref(storage, `products/${fileName}`);
+    const storageRef = ref(storage, `images/${cat}/${fileName}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     return new Promise((resolve, reject) => {
@@ -52,7 +52,7 @@ const uploadImages = async (file: File) => {
 }
 
 const maxSize = (value: File) => {
-    const fileSize = value.size / 1024 / 1024;
+    const fileSize = value.size / 61440 / 61440;
     return fileSize < 1 ? false : true
 }
 
@@ -105,9 +105,14 @@ export default function AddProduct() {
         setLoader(true)
         
         const CheckFileSize = maxSize(data.image[0]);
-        if (CheckFileSize) throw ('Image size must be less then 1MB')
-
-        const uploadImageToFirebase = await uploadImages(data.image[0]);
+        if (CheckFileSize) throw ('Image size must be less then 100MB')
+        let categoryName = ''
+        category?.map((item) => {
+            if(item._id == data.categoryID) {
+                categoryName = item.categoryName
+            }
+        })
+        const uploadImageToFirebase = await uploadImages(data.image[0], categoryName);
 
         const finalData = { 
             productName: data.name != '' ?  data.name : productName, 
@@ -238,8 +243,8 @@ export default function AddProduct() {
                                 <label className="label">
                                     <span className="label-text">Add product Images</span>
                                 </label>
-                                <input accept="image/*" max="1000000"  {...register("image", { required: true })} type="file" className="file-input file-input-bordered w-full " />
-                                {errors.image && <span className="text-red-500 text-xs mt-2">This field is required and the image must be less than or equal to 1MB.</span>}
+                                <input accept="image/*" max="600000000"  {...register("image", { required: true })} type="file" className="file-input file-input-bordered w-full " />
+                                {errors.image && <span className="text-red-500 text-xs mt-2">This field is required and the image must be less than or equal to 100MB.</span>}
                             </div>
 
                             <button className="btn btn-block mt-3">Done !</button>

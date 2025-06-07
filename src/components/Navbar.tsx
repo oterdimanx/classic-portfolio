@@ -60,53 +60,28 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
 
     return (
         <div className={`navbar ${!Scrolled && isHomePage ? "" : "bg-white/95"} mainNav top-0 left-0 pb-0 pt-0 ${isHomePage ? "fixed z-10" : "border-b-2 border-b-red-900"} `}>
-            <div className={`flex-none block ${!isHomePage ? "border-r-2 border-r-red-900 h-[170px]" : ""}`}>
+            <div className={`flex-none block ${!isHomePage ? "border-r-2 border-r-red-900 h-[170px]" : "h-[170px]"}`}>
                 <div className="dropdown">
                     <label className="text-white">
                     {
                         isHomePage ? 
-                        <Image src={'/logo_zyy-05.png'} alt="logo_zyy-05.png" width="250" height="190" sizes="30vw" className="md:block relative top-[9px]" onClick={() => router.push("/")} /> :
-                        <Image src={'/logo_zyy-05-black.png'} alt="logo_zyy-05.png" width="250" height="250" sizes="30vw" className="md:block" onClick={() => router.push("/")} />
+                        <Image src={'/turtle-transparent.png'} alt="turtle-transparent.png" width="250" height="190" sizes="30vw" className="md:block relative top-[9px]" onClick={() => router.push("/")} /> :
+                        <Image src={'/turtle.png'} alt="turtle.png" width="250" height="250" sizes="30vw" className="md:block" onClick={() => router.push("/")} />
                     }
                     </label>
                 </div>
             </div>
-            <div className={`secondaryNav bg-white-50  ${!isHomePage ? "px-2 py-2" : "px-0 relative -tracking-[0.06em] -left-[2px] -top-[30px]"}`}>
+            <div className={`secondaryNav bg-white-50  ${!isHomePage ? "px-0 relative -tracking-[0.06em] -left-[2px] -top-[30px]" : "px-0 relative -tracking-[0.06em] -left-[2px] -top-[30px]"}`}>
                 <ul className="">
                     <li>
                         <div className="text-sm m-w-full overflow-x-auto">
-                            <ul className={`dark:text-black text-xl flex subpixel-antialiased ${!isHomePage ? " text-red-400" : " text-white"}`}>
-                                <li className="p-auto">
-                                    <Link href={"/Lookbook"}>Lookbook</Link>
-                                </li>
-                                <li className="pl-10">
-                                    <Link href={"/Archive"}>Archives</Link>
-                                </li>  
+                            <ul className={`dark:text-black text-xl flex subpixel-antialiased ${!isHomePage ? " text-red-400" : Scrolled ?  " text-black" :  " text-white"}`}> 
                                 <li className="pl-10 whitespace-nowrap">
-                                    <Link href={"/Shop"}>Shop All</Link>
+                                    <Link href={"/Shop"}>Tout voir</Link>
                                 </li>                                
                             </ul>
                         </div>
                     </li>
-                    {!isHomePage &&
-                    <li>
-                        <div className="text-sm m-w-full overflow-x-auto text-black pt-10">
-                            <ul className="dark:text-black flex">
-                            <li className="inline-block mt-30 pr-10">
-                                <Link href={'/'}>
-                                ZYY FALL 24
-                                </Link>
-                            </li>
-                            <li className="inline-block text-2xl">|</li>
-                            <li className="inline-block">
-                                <p className="relative left-[26%]">
-                                    ZYY CLASSICS
-                                </p>
-                            </li>
-                            </ul>
-                        </div>
-                    </li>
-                    }
                 </ul>
             </div>
             <div className="navbar-end m-auto">
@@ -114,11 +89,11 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                     {
                         user ?
                         <div className="flex items-center justify-center -top-[30px] relative">
-                         <button onClick={handleLogout} className={isHomePage ? "btn text-white mx-2 bg-transparent" : "btn text-white mx-2"} aria-label="Logout">logout</button>
+                         <button onClick={handleLogout} className={isHomePage ? Scrolled ?  " btn text-black mx-2 bg-transparent" :  " btn text-white mx-2 bg-transparent" : "btn text-white mx-2"} aria-label="Logout">logout</button>
                          <button onClick={()=> {!isCartOpened && !isCartPage && setIsCartOpened(true)}} 
                          className={
                             isHomePage ? 
-                            "focus:outline-none btn btn-circle mx-2 bg-transparent" 
+                            Scrolled ? "focus:outline-none btn btn-circle mx-2 bg-black" : "focus:outline-none btn btn-circle mx-2 bg-transparent" 
                             : 
                             isCartPage ? "focus:outline-none btn btn-circle mx-2 opacity-50 cursor-not-allowed" : "focus:outline-none btn btn-circle mx-2"
                         } 
@@ -127,8 +102,16 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                          >
                             <FaCartArrowDown className="text-white text-xl" />
                          </button>
-                         <button onClick={() => router.push("/bookmark")} className={isHomePage ? "btn btn-circle mx-2 bg-transparent" : "btn btn-circle mx-2"} aria-label="View My Bookmarks"><MdFavorite className="text-white text-xl" /></button>
-                         <button onClick={() => router.push("/order/view-orders")} className={isHomePage ? "btn btn-circle mx-2 bg-transparent" : "btn btn-circle mx-2"} aria-label="View My Orders"><CiDeliveryTruck className="text-white text-xl" /></button>
+                         <button onClick={() => router.push("/bookmark")} 
+                         className={
+                            isHomePage ? 
+                            Scrolled ? "btn btn-circle mx-2 bg-black" : "btn btn-circle mx-2 bg-transparent" 
+                            : "btn btn-circle mx-2"} aria-label="View My Bookmarks"><MdFavorite className="text-white text-xl" /></button>
+                         <button onClick={() => router.push("/order/view-orders")} 
+                         className={
+                            isHomePage ? 
+                            Scrolled ? "btn btn-circle mx-2 bg-black" : "btn btn-circle mx-2 bg-transparent" 
+                            : "btn btn-circle mx-2"} aria-label="View My Orders"><CiDeliveryTruck className="text-white text-xl" /></button>
                          
                         </div>
                             :

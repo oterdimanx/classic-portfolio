@@ -10,8 +10,6 @@ import { setCategoryData, setCatLoading, setProdLoading, setProductData, setLook
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserData } from '@/utils/UserDataSlice'
 import { RootState } from '@/Store/store'
-import FeaturedProduct from '@/components/FeaturedProduct'
-import TopCategories from '@/components/TopCategories'
 import BackgroundContainer from '@/components/BackgroundContainer'
 import HomepageFeaturedProducts from '@/components/HomepageFeaturedProducts'
 
@@ -63,8 +61,6 @@ export default function Home() {
             <BackgroundContainer imageUrl={"/homepage.png"} >
               <HomepageFeaturedProducts />
             </BackgroundContainer>
-            <TopCategories />
-            <FeaturedProduct />
             <Footer />
           </>
       }

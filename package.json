@@ -1,6 +1,6 @@
 {
-  "name": "zyysk8club",
-  "version": "0.1.0",
+  "name": "portfolio backend",
+  "version": "1.0.0",
   "private": true,
   "browserslist": [
     ">0.2%",

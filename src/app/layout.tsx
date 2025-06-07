@@ -2,7 +2,6 @@ import './styles/globals.css'
 import './styles/learn-more.css'
 import './styles/footer.css'
 import { Providers } from '@/Store/Provider'
-import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata = {
   title: 'Classic Portfolio Images Upload Device',
@@ -17,7 +16,7 @@ export default function RootLayout({
 }) { 
   return (
     <html lang="fr">
-      <body className="zyy">
+      <body className="portfolio">
         <Providers>
           {children}
         </Providers>
