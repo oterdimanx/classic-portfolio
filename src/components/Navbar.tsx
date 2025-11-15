@@ -65,19 +65,22 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                     <label className="text-white">
                     {
                         isHomePage ? 
-                        <Image src={'/turtle-transparent.png'} alt="turtle-transparent.png" width="250" height="190" sizes="30vw" className="md:block relative top-[9px]" onClick={() => router.push("/")} /> :
-                        <Image src={'/turtle.png'} alt="turtle.png" width="250" height="250" sizes="30vw" className="md:block" onClick={() => router.push("/")} />
+                        <Image src={'/turtle-transparent.png'} alt="turtle.png" width="250" height="250" className="md:block" onClick={() => router.push("/")} /> :
+                        <Image src={'/turtle.png'} alt="turtle.png" width="250" height="250" className="md:block" onClick={() => router.push("/")} />
                     }
                     </label>
                 </div>
             </div>
             <div className={`secondaryNav bg-white-50  ${!isHomePage ? "px-0 relative -tracking-[0.06em] -left-[2px] -top-[30px]" : "px-0 relative -tracking-[0.06em] -left-[2px] -top-[30px]"}`}>
-                <ul className="">
+                <ul className="secondaryNavHeader">
                     <li>
                         <div className="text-sm m-w-full overflow-x-auto">
                             <ul className={`dark:text-black text-xl flex subpixel-antialiased ${!isHomePage ? " text-red-400" : Scrolled ?  " text-black" :  " text-white"}`}> 
                                 <li className="pl-10 whitespace-nowrap">
-                                    <Link href={"/Shop"}>Tout voir</Link>
+                                    <Link className={
+                                    isHomePage ? 
+                                    Scrolled ? "text-black" : "text-white" 
+                                    : "text-black"} href={"/Shop"}>Voir toutes les images</Link>
                                 </li>                                
                             </ul>
                         </div>
