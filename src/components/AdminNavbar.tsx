@@ -24,10 +24,11 @@ export default function AdminNavbar() {
             <div className="flex-1">
                 <div className="dropdown md:hidden">
                     <label tabIndex={0} className="btn btn-active btn-circle bg-white/95">
-                        <Image src={'/turtle.jpg'} alt="logo_turtle" width="250" height="150" sizes="10vw" className="md:block bg-white/95" />
+                        <Image src={'/turtle.jpg'} alt="logo_turtle" width="250" height="125" className="md:block bg-white/95" />
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow text-black bg-gray-50 rounded-box w-52">
                         <li onClick={() => dispatch(setNavActive('Base'))}><button>Homepage</button></li>
+                        <li><Link href={"/"}>Website</Link></li>
                         <li onClick={() => dispatch(setNavActive('activeCategories'))}><button>Categories</button></li>
                         <li onClick={() => dispatch(setNavActive('activeProducts'))}><button>Products</button></li>
                         <li onClick={() => dispatch(setNavActive('activeLookbook'))}><button>Lookbook</button></li>

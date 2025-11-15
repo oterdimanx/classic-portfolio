@@ -26,7 +26,7 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    //FetchDataOFProductAndCategory()
+    FetchDataOFProductAndCategory()
   }, [])
 
   const FetchDataOFProductAndCategory = async () => {

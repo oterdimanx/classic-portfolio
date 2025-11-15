@@ -23,6 +23,7 @@ export default function AdminSidebar() {
             <div className="w-full">
                 <ul className="flex px-4 flex-col items-start justify-center">
                     <li onClick={() => dispatch(setNavActive('Base'))} className="py-3 px-1 mb-3"><button className="flex items-center justify-center"> <AiFillHome className="mx-2" />Home</button></li>
+                    <li className='py-3 px-1 mb-3'><Link href={'/'} className="flex items-center justify-center"> <IoIosAddCircle className="mx-2" />FrontEnd</Link></li>
                     <li onClick={() => dispatch(setNavActive('activeCategories'))} className="py-3 px-1 mb-3"><button className="flex items-center justify-center"> <BiCategory className="mx-2" />Categories</button></li>
                     <li onClick={() => dispatch(setNavActive('activeProducts'))} className="py-3 px-1 mb-3"><button className="flex items-center justify-center"> <GiLoincloth className="mx-2" />Products</button></li>
                     <li onClick={() => dispatch(setNavActive('activeLookbook'))} className="py-3 px-1 mb-3"><button className="flex items-center justify-center"> <BiImages className="mx-2" />Lookbook</button></li>
