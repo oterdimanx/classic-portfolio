@@ -6,9 +6,9 @@ const nextConfig = {
       return config;
   },
   images: {
-    loader: 'default',  // Or 'imgix' if using a service
-    unoptimized: true,   // Skips sharp entirely
-    remotePatterns: [
+      loader: 'default',  // Or 'imgix' if using a service
+      unoptimized: false,   // Skips sharp entirely
+      remotePatterns: [
         {
             protocol: 'https',
             hostname: 'firebasestorage.googleapis.com',
