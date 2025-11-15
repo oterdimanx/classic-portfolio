@@ -11,7 +11,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "preinstall": "npm install --platform=linux --arch=x64 sharp"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.1",
