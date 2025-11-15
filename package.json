@@ -9,10 +9,9 @@
   ],
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/generate-sitemap.js",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "generate-sitemap": "node scripts/generate-sitemap.js"
+    "lint": "next lint"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.1",
