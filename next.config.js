@@ -6,8 +6,8 @@ const nextConfig = {
       return config;
   },
   images: {
-      loader: 'default',  // Or 'imgix' if using a service
-      unoptimized: false,   // Skips sharp entirely
+      loader: 'default',
+      unoptimized: true, // Skips sharp entirely
       remotePatterns: [
         {
             protocol: 'https',

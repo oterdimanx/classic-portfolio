@@ -65,8 +65,8 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                     <label className="text-white">
                     {
                         isHomePage ? 
-                        <Image src={'/turtle-transparent.png'} alt="turtle.png" width="250" height="250" className="md:block" onClick={() => router.push("/")} /> :
-                        <Image src={'/turtle.png'} alt="turtle.png" width="250" height="250" className="md:block" onClick={() => router.push("/")} />
+                        <img src={'/turtle-transparent.png'} alt="turtle.png" width="250" height="125" className="md:block" onClick={() => router.push("/")} /> :
+                        <img src={'/turtle.png'} alt="turtle.png" width="250" height="250" className="md:block" onClick={() => router.push("/")} />
                     }
                     </label>
                 </div>
