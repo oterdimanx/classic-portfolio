@@ -5,7 +5,7 @@ const { MongoClient } = require('mongodb');
 const SITE_URL = '';
 
 async function fetchData() {
-  const client = new MongoClient('mongodb+srv://olivier:2xAjDf4GyLcHbE20@portfolio.zdlasg3.mongodb.net/?retryWrites=true&w=majority&appName=portfolio');
+  const client = new MongoClient('your-mongodburl');
 
   try {
     await client.connect();
