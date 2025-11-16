@@ -134,7 +134,7 @@ export default function FavouriteProductDataTable() {
                 key={'ThisProductData'}
                 pagination
                 keyField="id"
-                title={`Favourite Products list`}
+                title={`Liste de Favoris`}
                 fixedHeader
                 fixedHeaderScrollHeight='750px'
                 selectableRows
@@ -145,11 +145,10 @@ export default function FavouriteProductDataTable() {
                     <input className='w-60 dark:bg-transparent py-2 px-2  outline-none  border-b-2 border-orange-600' type={"search"}
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        placeholder={"Product Name"} />
+                        placeholder={"Tri par nom"} />
                 }
                 className="bg-white px-4 h-5/6 "
             />
-
         </div>
     )
 }

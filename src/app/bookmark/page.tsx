@@ -3,6 +3,7 @@
 import { get_all_bookmark_items } from '@/Services/common/bookmark'
 import { RootState } from '@/Store/store'
 import FavouriteProductDataTable from '@/components/FavouriteProductDataTable'
+import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
 import Navbar from '@/components/Navbar'
 import { setNavActive } from '@/utils/AdminNavSlice'
@@ -61,25 +62,19 @@ export default function Page() {
           <Navbar />
         </div>
         <div className="w-full bg-gray-50 h-screen px-3 py-2 font-[Poppin]">
-            <div className="text-sm breadcrumbs  border-b-2 border-b-orange-600">
+            <div className="text-sm breadcrumbs ">
                 <ul className="dark:text-black">
                     <li>
-                        <Link href={"/"}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 mr-2 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-                            Home
-                        </Link>
-                    </li>
-                    <li>
                         <MdFavorite className="w-4 h-4 mr-2 stroke-current" />
-                        Favourite Products
+                        Gérez ici vos images favorites
                     </li>
                 </ul>
             </div>
             <div className="w-full h-5/6 py-5">
                 <FavouriteProductDataTable />
             </div>
-
         </div>
+        <Footer />
         </>
     )
 }

@@ -7,6 +7,7 @@ import React, { useState, FormEvent } from 'react'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TailSpin } from 'react-loader-spinner';
+import Footer from '@/components/Footer';
 
 export default function ForgetPassword() {
   const Router = useRouter();
@@ -59,30 +60,37 @@ export default function ForgetPassword() {
 
   return (
     <>
-      <Navbar />
+    <div>
+        <Navbar />
+    </div>
+    <div className="w-full bg-gray-50 text-black font-[Poppin]">
+        <div>
+            <h1 className="py-2 dark:text-black">Oliver's Classic PortFolio : Changez de mot de passe</h1>
+        </div>
+    </div>
       <section className="bg-gray-50 font-[Poppin] text-center">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
           <div className="w-full p-6 bg-white rounded-lg shadow  md:mt-0 sm:max-w-md  sm:p-8">
             <h2 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
-              Change Password
+              Changer de Mot de Passe
             </h2>
             <form onSubmit={handleSubmit} className="mt-4 space-y-4 lg:mt-5 md:space-y-5" >
               <div className='text-left'>
-                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
+                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Votre Email</label>
                 <input onChange={(e) => setFormData({ ...formData, email: e.target.value })} type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 " placeholder="name@company.com" />
                 {
                   error.email && <p className="text-sm text-red-500">{error.email}</p>
                 }
               </div>
               <div className='text-left'>
-                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 ">New Password</label>
+                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 ">Nouveau Mot de Passe</label>
                 <input onChange={(e) => setFormData({ ...formData, password: e.target.value })} type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 " />
                 {
                   error.password && <p className="text-sm text-red-500">{error.password}</p>
                 }
               </div>
               <div className='text-left'>
-                <label htmlFor="confirm-password" className="block mb-2 text-sm font-medium text-gray-900 ">Confirm password</label>
+                <label htmlFor="confirm-password" className="block mb-2 text-sm font-medium text-gray-900 ">Confirmez votre Mot de Passe</label>
                 <input onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })} type="password" name="confirm-password" id="confirm-password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-600 focus:border-orange-600 block w-full p-2.5 " />
                 {
                   error.confirmPassword && <p className="text-sm text-red-500">{error.confirmPassword}</p>
@@ -102,12 +110,12 @@ export default function ForgetPassword() {
                   />
                 </button> : <button type="submit" className="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">Reset</button>
               }
-
             </form>
           </div>
         </div>
         <ToastContainer />
       </section>
+      <Footer />
     </>
   )
 }

@@ -137,7 +137,7 @@ export default function OrdersDetailsDataTable() {
         key={'ThisOrdersData'}
         pagination
         keyField="id"
-        title={`Orders list`}
+        title={`Liste des Commandes`}
         fixedHeader
         fixedHeaderScrollHeight='700px'
         selectableRows

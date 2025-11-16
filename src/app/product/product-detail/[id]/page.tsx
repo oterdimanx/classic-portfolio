@@ -10,6 +10,7 @@ import { setUserData } from '@/utils/UserDataSlice'
 
 import Navbar from '@/components/Navbar'
 import ProductDetails from '@/components/ProductDetails'
+import Footer from '@/components/Footer'
 
 type ProductData = {
     _id: string,
@@ -55,26 +56,27 @@ export default function Page() {
             <div className="lg:h-4/5 py-4 px-4 flex items-center justify-center">
                 {
                     isLoading ?
-                        <div className="w-4/5 bg-gray-100 rounded-xl h-4/5 flex items-center justify-center shadow-2xl">
-                            <Loading />
-                        </div>
-                        :
-                        <><ProductDetails product={{
-                                title: prodData?.productName || "Loading Product Name",
-                                description: prodData?.productDescription || "Loading Product Description",
-                                images: [
-                                    prodData?.productImage || '/images98.jpg'
-                                ],
-                                price: prodData?.productPrice || 0,
-                                inStock: true,
-                                isFeatured: prodData?.productFeatured ? true : false,
-                                sizeGuideUrl: "/size-guide.jpg",
-                                _id: prodData?._id || 'unk_zyy'
-                            }} />
-                        </>
+                    <div className="w-4/5 bg-gray-100 rounded-xl h-4/5 flex items-center justify-center shadow-2xl">
+                        <Loading />
+                    </div>
+                    :
+                    <><ProductDetails product={{
+                            title: prodData?.productName || "Loading Product Name",
+                            description: prodData?.productDescription || "Loading Product Description",
+                            images: [
+                                prodData?.productImage || '/images98.jpg'
+                            ],
+                            price: prodData?.productPrice || 0,
+                            inStock: true,
+                            isFeatured: prodData?.productFeatured ? true : false,
+                            sizeGuideUrl: "/logo_zyy-05-black.png",
+                            _id: prodData?._id || 'unk_zyy'
+                        }} />
+                    </>
                 }
             </div>
         </div>
+        <Footer />
         </>
     )
 }

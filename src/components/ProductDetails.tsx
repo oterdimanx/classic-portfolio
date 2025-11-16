@@ -149,7 +149,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           <h2 className="font-semibold mb-2">Description</h2>
           <p className="text-base leading-relaxed whitespace-pre-line">{product.description}</p>
         </div>
-
+{ /* 
         <div>
           <h2 className="font-semibold mb-2">Size Guide</h2>
           <a
@@ -161,6 +161,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             View Size Guide
           </a>
         </div>
+*/}
       </div>
     </div>
 

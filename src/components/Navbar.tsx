@@ -60,27 +60,24 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
 
     return (
         <div className={`navbar ${!Scrolled && isHomePage ? "" : "bg-white/95"} mainNav top-0 left-0 pb-0 pt-0 ${isHomePage ? "fixed z-10" : "border-b-2 border-b-red-900"} `}>
-            <div className={`flex-none block ${!isHomePage ? "border-r-2 border-r-red-900 h-[170px]" : "h-[170px]"}`}>
+            <div className={`flex-none block ${!isHomePage ? "border-r-2 border-r-red-900 h-[130px]" : "h-[130px]"}`}>
                 <div className="dropdown">
                     <label className="text-white">
                     {
                         isHomePage ? 
-                        <img src={'/turtle-transparent.png'} alt="turtle.png" width="250" height="125" className="md:block" onClick={() => router.push("/")} /> :
+                        <img src={'/turtle-transparent.png'} alt="turtle.png" width="250" height="150" className="md:block" onClick={() => router.push("/")} /> :
                         <img src={'/turtle.png'} alt="turtle.png" width="250" height="250" className="md:block" onClick={() => router.push("/")} />
                     }
                     </label>
                 </div>
             </div>
-            <div className={`secondaryNav bg-white-50  ${!isHomePage ? "px-0 relative -tracking-[0.06em] -left-[2px] -top-[30px]" : "px-0 relative -tracking-[0.06em] -left-[2px] -top-[30px]"}`}>
+            <div className={`secondaryNav bg-white-50  ${!isHomePage ? "px-0 relative -tracking-[0.06em] -left-[2px] -top-[0px]" : "px-0 relative -tracking-[0.06em] -left-[2px] -top-[0px]"}`}>
                 <ul className="secondaryNavHeader">
                     <li>
                         <div className="text-sm m-w-full overflow-x-auto">
                             <ul className={`dark:text-black text-xl flex subpixel-antialiased ${!isHomePage ? " text-red-400" : Scrolled ?  " text-black" :  " text-white"}`}> 
                                 <li className="pl-10 whitespace-nowrap">
-                                    <Link className={
-                                    isHomePage ? 
-                                    Scrolled ? "text-black" : "text-white" 
-                                    : "text-black"} href={"/Shop"}>Voir toutes les images</Link>
+                                    <Link className={isHomePage ? Scrolled ?  " btn text-black mx-2 bg-transparent" :  " btn text-white mx-2 bg-transparent" : "btn text-white mx-2"} href={"/Shop"}>Voir toutes les images</Link>
                                 </li>                                
                             </ul>
                         </div>
@@ -91,7 +88,7 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                 <div className="flex-none">
                     {
                         user ?
-                        <div className="flex items-center justify-center -top-[30px] relative">
+                        <div className="flex items-center justify-center -top-[0px] relative">
                          <button onClick={handleLogout} className={isHomePage ? Scrolled ?  " btn text-black mx-2 bg-transparent" :  " btn text-white mx-2 bg-transparent" : "btn text-white mx-2"} aria-label="Logout">logout</button>
                          <button onClick={()=> {!isCartOpened && !isCartPage && setIsCartOpened(true)}} 
                          className={
