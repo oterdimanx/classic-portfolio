@@ -63,12 +63,20 @@ export default function ProductCard({ productName, productImage, productPrice, _
             })
 
             if(arrBook.includes(_id)){
-                console.log('id retrouve dans la liste ' + _id)
+            //console.log('id retrouve dans la liste ' + _id)
+              toast.warning("Le bookmark existe déjà dans vos favoris", {
+                position: 'bottom-center',
+                className: 'custom-warning-shadow toast-message'
+              })
             }else{
                 const finalData = { productID: _id, userID: user?._id }
                 const res = await bookmark_product(finalData);
                 if (res?.success) {
-                    console.log('bookmark added')
+                    //console.log('bookmark added')
+                    toast.warning("Le bookmark a été ajouté aux favoris", {
+                        position: 'bottom-center',
+                        className: 'custom-warning-shadow toast-message'
+                    })
                     /* le bookmark a bien été ajouté */
                 } else {
                     console.log('An error occured (AddToBookmark) : ' + res?.message)
@@ -80,7 +88,11 @@ export default function ProductCard({ productName, productImage, productPrice, _
             const finalData = { productID: _id, userID: user?._id }
             const res = await bookmark_product(finalData);
             if (res?.success) {
-                console.log('bookmark added')
+                //console.log('bookmark added')
+                toast.warning("Le bookmark a été ajouté aux favoris", {
+                    position: 'bottom-center',
+                    className: 'custom-warning-shadow toast-message'
+                })
                 // le bookmark a bien été ajouté
             } else {
                 console.log('An error occured (AddToBookmark) : ' + res?.message)
@@ -94,9 +106,8 @@ export default function ProductCard({ productName, productImage, productPrice, _
             <div onClick={() => router.push(`/product/product-detail/${productSlug}`)} className='w-full rounded relative h-60'>
                 <Image src={productImage || '/images98.jpg'} alt='no Image' className='rounded' fill sizes='50vw' />
             </div>
-        {/** <><ToastContainer /></> */}
+
             <div className="card-body">
-                
                 <h2 className="card-title" onClick={() => router.push(`/product/product-detail/${productSlug}`)}>{productName} </h2>
                 <p className='font-semibold' onClick={() => router.push(`/product/product-detail/${productSlug}`)}>{`Rs ${productPrice}`}</p>
 
@@ -106,7 +117,7 @@ export default function ProductCard({ productName, productImage, productPrice, _
                     <button onClick={AddToBookmark} className="btn btn-circle btn-ghost absolute top-0 right-0"><MdFavorite className="text-2xl text-red-600 font-semibold" /></button>
                 </div>
             </div>
-        </div>
+        </div><ToastContainer />
         </>
     )
 }

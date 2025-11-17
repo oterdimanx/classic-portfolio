@@ -8,6 +8,8 @@ import { add_to_cart } from '@/Services/common/cart'
 import { bookmark_product, get_all_bookmark_items } from '@/Services/common/bookmark'
 import { RootState } from '@/Store/store';
 import { useSelector } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Product {
     title: string
@@ -67,12 +69,20 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             })
 
             if(arrBook.includes(product?._id)){
-                console.log('id retrouve dans la liste ' + product?._id)
+                //console.log('id retrouve dans la liste ' + product?._id)
+                toast.warning("Le bookmark existe déjà dans vos favoris", {
+                  position: 'bottom-center',
+                  className: 'custom-warning-shadow'
+                })
             }else{
                 const finalData = { productID: product?._id, userID: user?._id }
                 const res = await bookmark_product(finalData);
                 if (res?.success) {
-                    console.log('bookmark added')
+                    //console.log('bookmark added')
+                    toast.warning("Le bookmark a été ajouté aux favoris", {
+                      position: 'bottom-center',
+                      className: 'custom-warning-shadow'
+                    })
                     /* le bookmark a bien été ajouté */
                 } else {
                     console.log('An error occured (AddToBookmark) : ' + res?.message)
@@ -84,7 +94,11 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             const finalData = { productID: product?._id, userID: user?._id }
             const res = await bookmark_product(finalData);
             if (res?.success) {
-                console.log('bookmark added')
+              //console.log('bookmark added')
+              toast.warning("e bookmark a été ajouté aux favoris", {
+                position: 'bottom-center',
+                className: 'custom-warning-shadow'
+              })
                 // le bookmark a bien été ajouté
             } else {
                 console.log('An error occured (AddToBookmark) : ' + res?.message)
@@ -172,6 +186,8 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           <h2 className="font-semibold mb-2">Description</h2>
           <p className="text-base leading-relaxed whitespace-pre-line">{product.description}</p>
         </div>
+
+        <ToastContainer />
 { /* 
         <div>
           <h2 className="font-semibold mb-2">Size Guide</h2>
