@@ -76,7 +76,7 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                         <div className="text-sm m-w-full overflow-x-auto">
                             <ul className={`dark:text-black text-xl flex subpixel-antialiased ${!isHomePage ? " text-red-400" : Scrolled ?  " text-black" :  " text-white"}`}> 
                                 <li className="pl-10 whitespace-nowrap">
-                                    <Link className={isHomePage ? Scrolled ?  " btn text-black mx-2 bg-transparent" :  " btn text-white mx-2 bg-transparent" : "btn text-white mx-2"} href={"/PortFolio-All-Images"}>Voir toutes les images</Link>
+                                    <Link className={isHomePage ? Scrolled ?  " btn text-black mx-2 bg-transparent hover:text-white" :  " btn text-white mx-2 bg-transparent" : "btn text-white mx-2"} href={"/PortFolio-All-Images"}>Voir toutes les images</Link>
                                 </li>                                
                             </ul>
                         </div>
@@ -88,7 +88,7 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                     {
                         user ?
                         <div className="flex items-center justify-center -top-[0px] relative">
-                         <button onClick={handleLogout} className={isHomePage ? Scrolled ?  " btn text-black mx-2 bg-transparent" :  " btn text-white mx-2 bg-transparent" : "btn text-white mx-2"} aria-label="Logout">logout</button>
+                         <button onClick={handleLogout} className={isHomePage ? Scrolled ?  " btn text-black mx-2 bg-transparent hover:text-white" :  " btn text-white mx-2 bg-transparent" : "btn text-white mx-2"} aria-label="Logout">logout</button>
                          <button onClick={()=> {!isCartOpened && !isCartPage && setIsCartOpened(true)}} 
                          className={
                             isHomePage ? 

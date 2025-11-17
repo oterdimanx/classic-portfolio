@@ -70,7 +70,7 @@ export default function Page() {
                     </li>
                 </ul>
             </div>
-            <div className="w-full h-5/6 py-5">
+            <div className="w-full h-5/6">
                 <FavouriteProductDataTable />
             </div>
         </div>

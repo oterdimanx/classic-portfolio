@@ -36,7 +36,7 @@ export default function LeftColSelectedProducts( props: any ) {
     }
   })
 
-  const filteredProducts = CategoryProducts?.slice(0, 9)
+  const filteredProducts = CategoryProducts?.slice(0, 50)
 
 
   return (

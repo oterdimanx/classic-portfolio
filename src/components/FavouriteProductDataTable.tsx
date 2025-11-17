@@ -4,13 +4,12 @@ import React, { useEffect, useState } from 'react'
 
 import { useSWRConfig } from "swr"
 import { toast } from 'react-toastify';
-import DataTable from 'react-data-table-component';
+import DataTable, { createTheme } from 'react-data-table-component';
 import Image from 'next/image';
 import Loading from '@/app/loading';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/Store/store';
 import { useRouter } from 'next/navigation';
-import { delete_a_product } from '@/Services/Admin/product';
 import { delete_a_bookmark_item, get_all_bookmark_items } from '@/Services/common/bookmark';
 import { setBookmark } from '@/utils/Bookmark';
 
@@ -49,7 +48,6 @@ export default function FavouriteProductDataTable() {
     const data = useSelector((state: RootState) => state.Bookmark.bookmark)
     const [search, setSearch] = useState('');
     const [filteredData, setFilteredData] = useState<BookmarkItem[] | []>([]);
-
 
     useEffect(() => {
         setBookmarkData(data)
@@ -95,9 +93,6 @@ export default function FavouriteProductDataTable() {
         }
     }
 
-
-
-
     const handleDeleteProduct = async (id: string) => {
         const res = await delete_a_bookmark_item(id);
         if (res?.success) {
@@ -108,7 +103,6 @@ export default function FavouriteProductDataTable() {
             throw (res?.message)
         }
     }
-
 
     useEffect(() => {
         if (search === '') {
@@ -121,10 +115,17 @@ export default function FavouriteProductDataTable() {
             }))
         }
 
-
     }, [search, bookmarkData])
 
-
+    // Override the row font size by registering a custom theme and using its name in the DataTable
+    createTheme('myCustomTheme', {
+        rows: {
+            color: '#a80000',
+        },
+        columns: {
+            color: '#a80000'
+        }
+    }, 'light');
 
     return (
         <div className='w-full h-full'>
@@ -142,12 +143,13 @@ export default function FavouriteProductDataTable() {
                 persistTableHead
                 subHeader
                 subHeaderComponent={
-                    <input className='w-60 dark:bg-transparent py-2 px-2  outline-none  border-b-2 border-orange-600' type={"search"}
+                    <input className='w-60 dark:bg-transparent py-2 px-2 outline-none border-b-2 border-orange-600' type={"search"}
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder={"Tri par nom"} />
                 }
-                className="bg-white px-4 h-5/6 "
+                className="bg-white px-4 h-5/6 favorite-product-data-table"
+                theme="myCustomTheme"
             />
         </div>
     )

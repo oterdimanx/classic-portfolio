@@ -73,7 +73,7 @@ export default function ProductCard({ productName, productImage, productPrice, _
                 const res = await bookmark_product(finalData);
                 if (res?.success) {
                     //console.log('bookmark added')
-                    toast.warning("Le bookmark a été ajouté aux favoris", {
+                    toast("Le bookmark a été ajouté aux favoris", {
                         position: 'bottom-center',
                         className: 'custom-warning-shadow toast-message'
                     })
@@ -89,7 +89,7 @@ export default function ProductCard({ productName, productImage, productPrice, _
             const res = await bookmark_product(finalData);
             if (res?.success) {
                 //console.log('bookmark added')
-                toast.warning("Le bookmark a été ajouté aux favoris", {
+                toast("Le bookmark a été ajouté aux favoris", {
                     position: 'bottom-center',
                     className: 'custom-warning-shadow toast-message'
                 })

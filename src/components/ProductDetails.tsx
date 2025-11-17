@@ -70,16 +70,20 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
             if(arrBook.includes(product?._id)){
                 //console.log('id retrouve dans la liste ' + product?._id)
+
                 toast.warning("Le bookmark existe déjà dans vos favoris", {
                   position: 'bottom-center',
                   className: 'custom-warning-shadow'
                 })
+
+                //notify("Le bookmark existe déjà dans vos favoris")
+
             }else{
                 const finalData = { productID: product?._id, userID: user?._id }
                 const res = await bookmark_product(finalData);
                 if (res?.success) {
                     //console.log('bookmark added')
-                    toast.warning("Le bookmark a été ajouté aux favoris", {
+                    toast("Le bookmark a été ajouté aux favoris", {
                       position: 'bottom-center',
                       className: 'custom-warning-shadow'
                     })
@@ -95,7 +99,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             const res = await bookmark_product(finalData);
             if (res?.success) {
               //console.log('bookmark added')
-              toast.warning("e bookmark a été ajouté aux favoris", {
+              toast("Le bookmark a été ajouté aux favoris", {
                 position: 'bottom-center',
                 className: 'custom-warning-shadow'
               })
@@ -186,7 +190,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           <h2 className="font-semibold mb-2">Description</h2>
           <p className="text-base leading-relaxed whitespace-pre-line">{product.description}</p>
         </div>
-
+        
         <ToastContainer />
 { /* 
         <div>
