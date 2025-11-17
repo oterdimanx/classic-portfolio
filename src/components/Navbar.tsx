@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 import { FaCartArrowDown } from 'react-icons/fa';
 import { CiDeliveryTruck } from 'react-icons/ci'
 import { MdFavorite } from 'react-icons/md';
-import Image from 'next/image'
 import CartOverlay from './CartOverlay';
 
 interface NavbarProps {
@@ -60,7 +59,7 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
 
     return (
         <div className={`navbar ${!Scrolled && isHomePage ? "" : "bg-white/95"} mainNav top-0 left-0 pb-0 pt-0 ${isHomePage ? "fixed z-10" : "border-b-2 border-b-red-900"} `}>
-            <div className={`flex-none block ${!isHomePage ? "border-r-2 border-r-red-900 h-[130px]" : "h-[130px]"}`}>
+            <div className={`flex-none block ${!isHomePage ? "border-r-2 border-r-red-900 h-[130px] top-menu-image-container" : "h-[130px]"}`}>
                 <div className="dropdown">
                     <label className="text-white">
                     {
@@ -77,7 +76,7 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                         <div className="text-sm m-w-full overflow-x-auto">
                             <ul className={`dark:text-black text-xl flex subpixel-antialiased ${!isHomePage ? " text-red-400" : Scrolled ?  " text-black" :  " text-white"}`}> 
                                 <li className="pl-10 whitespace-nowrap">
-                                    <Link className={isHomePage ? Scrolled ?  " btn text-black mx-2 bg-transparent" :  " btn text-white mx-2 bg-transparent" : "btn text-white mx-2"} href={"/Shop"}>Voir toutes les images</Link>
+                                    <Link className={isHomePage ? Scrolled ?  " btn text-black mx-2 bg-transparent" :  " btn text-white mx-2 bg-transparent" : "btn text-white mx-2"} href={"/PortFolio-All-Images"}>Voir toutes les images</Link>
                                 </li>                                
                             </ul>
                         </div>
@@ -115,7 +114,7 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                          
                         </div>
                             :
-                            <button onClick={() => router.push('/auth/login')} className="btn text-white mx-2" aria-label="Login">Login</button>
+                            <button onClick={() => router.push('/auth/login')} className="btn text-white mx-2 btn-login relative" aria-label="Login">Login</button>
                     }
                     {/* Overlay Panel */}
                     {isCartOpened && (

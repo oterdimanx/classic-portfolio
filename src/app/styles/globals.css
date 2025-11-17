@@ -102,3 +102,42 @@ body {
 .animate-fadeIn {
   animation: fadeIn 2s ease forwards;
 }
+
+@media (max-width: 620px) {
+
+  .mainNav {
+    max-height: 80%;
+  }
+
+  .top-menu-image-container img {
+    max-width: 95%;
+    width: 183px;
+  }
+
+  .card {
+    max-width: 270px;
+  }
+
+  .btn-login {
+    top: 0px;
+    margin-left: -20px;
+  }
+  
+}
+
+@media (max-width: 833px) {
+
+  .secondaryNav {
+    position: relative;
+    top: -25px;
+    left: -33px
+  }
+
+  .navbar-end {
+    justify-content: center;
+    position: relative;
+    top: 30px;
+    left: -220px
+  }
+
+}

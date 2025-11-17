@@ -12,7 +12,7 @@ export default function Hero() {
         </video>
 */}
         <h1 className="mb-2 text-xl text-white/90 z-10 font-semibold">Welcome to my PortFolio!</h1>
-        <Link href={"/Shop"} className="btn btn-ghost border border-orange-600 text-white/90 hover:bg-orange-600 z-40">Voir les images</Link>
+        <Link href={"/PortFolio-All-Images"} className="btn btn-ghost border border-orange-600 text-white/90 hover:bg-orange-600 z-40">Voir les images</Link>
       </div>
   )
 }

@@ -90,20 +90,20 @@ const uploadImages = async (file: File) => {
 
 
 const maxSize = (value: File) => {
-  const fileSize = value.size / 1024 / 1024;
-  return fileSize < 1 ? false : true
+    const fileSize = value.size / 61440 / 61440
+    return fileSize < 1 ? false : true
 }
 
 export default function Page() {
 
   const [loader, setLoader] = useState(false)
   const [newError, setNewError] = useState('')
-  const Router = useRouter();
-  const dispatch = useDispatch();
-  const [prodData, setprodData] = useState<ProductData | undefined>(undefined);
+  const Router = useRouter()
+  const dispatch = useDispatch()
+  const [prodData, setprodData] = useState<ProductData | undefined>(undefined)
   const category = useSelector((state: RootState) => state.Admin.category) as CategoryData[] | undefined
   const useParamObject = useParams<{ id: string }>()
-  const id  = useParamObject.id;
+  const id  = useParamObject.id
   const [productName, setProductName] = useState<any>('')
 
   useEffect(() => {

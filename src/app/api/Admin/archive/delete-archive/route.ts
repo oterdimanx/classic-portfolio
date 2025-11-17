@@ -14,7 +14,7 @@ export async function DELETE(req: Request) {
       const id = searchParams.get('id');
 
       if(!id)  return NextResponse.json({ success: true, message: "Archive ID is Required" });
-console.log('DSFDDDDDDDDD')
+
       const deleteData = await Archive.findByIdAndDelete(id);
 
       if (deleteData) {
