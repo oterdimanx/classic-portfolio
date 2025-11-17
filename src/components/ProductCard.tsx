@@ -1,15 +1,15 @@
-import { bookmark_product, get_all_bookmark_items } from '@/Services/common/bookmark';
-import { add_to_cart } from '@/Services/common/cart';
-import { RootState } from '@/Store/store';
+import { bookmark_product, get_all_bookmark_items } from '@/Services/common/bookmark'
+import { add_to_cart } from '@/Services/common/cart'
+import { RootState } from '@/Store/store'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { BsCartPlus } from 'react-icons/bs'
 import { GrFavorite } from 'react-icons/gr'
-import { MdFavorite } from 'react-icons/md';
-import { useSelector } from 'react-redux';
-import LearnMore from './LearnMore';
-
+import { MdFavorite } from 'react-icons/md'
+import { useSelector } from 'react-redux'
+import LearnMore from './LearnMore'
+import { toast, ToastContainer } from 'react-toastify'
 
 type ProductData = {
     productName: string,
@@ -33,7 +33,7 @@ type User = {
 }
 
 
-export default function ProductCard({ productName, productFeatured, productImage, productCategory, productPrice, _id, productSlug }: ProductData) {
+export default function ProductCard({ productName, productImage, productPrice, _id, productSlug }: ProductData) {
     const router = useRouter();
     const user = useSelector((state: RootState) => state.User.userData) as User | null
     const [arrBook, SetArrBook] = useState<any[]>([])
@@ -43,6 +43,7 @@ export default function ProductCard({ productName, productFeatured, productImage
         const res = await add_to_cart(finalData);
         if (res?.success) {
             console.log(res?.message);
+            toast.warning(res?.message)
         } else {
             console.log('An error occured (AddToCart) : ' + res?.message)
         }
@@ -88,12 +89,14 @@ export default function ProductCard({ productName, productFeatured, productImage
     }
 
     return (
+        <>
         <div className="card text-black cursor-pointer card-compact m-3 w-80 bg-white shadow-xl relative">
             <div onClick={() => router.push(`/product/product-detail/${productSlug}`)} className='w-full rounded relative h-60'>
                 <Image src={productImage || '/images98.jpg'} alt='no Image' className='rounded' fill sizes='50vw' />
             </div>
-
+        {/** <><ToastContainer /></> */}
             <div className="card-body">
+                
                 <h2 className="card-title" onClick={() => router.push(`/product/product-detail/${productSlug}`)}>{productName} </h2>
                 <p className='font-semibold' onClick={() => router.push(`/product/product-detail/${productSlug}`)}>{`Rs ${productPrice}`}</p>
 
@@ -104,5 +107,6 @@ export default function ProductCard({ productName, productFeatured, productImage
                 </div>
             </div>
         </div>
+        </>
     )
 }

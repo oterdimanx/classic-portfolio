@@ -8,7 +8,6 @@ import { add_to_cart } from '@/Services/common/cart'
 import { bookmark_product, get_all_bookmark_items } from '@/Services/common/bookmark'
 import { RootState } from '@/Store/store';
 import { useSelector } from 'react-redux';
-import { useParams } from 'next/navigation';
 
 interface Product {
     title: string
@@ -32,11 +31,11 @@ type User = {
 }
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
-  const useParamObject = useParams<{ id: string }>()
-  const id  = useParamObject.id;
+
   const [currentImage, setCurrentImage] = useState(0);
   const user = useSelector((state: RootState) => state.User.userData) as User | null
-  
+  const [arrBook, SetArrBook] = useState<any[]>([])
+
   const handlers = useSwipeable({
     onSwipedLeft: () => setCurrentImage((prev) => (prev + 1) % product.images.length),
     onSwipedRight: () => setCurrentImage((prev) => (prev - 1 + product.images.length) % product.images.length),
@@ -45,7 +44,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   });
 
   const AddToCart = async () => {
-        const finalData = { productID: id, userID: user?._id }
+        const finalData = { productID: product._id, userID: user?._id }
         const res = await add_to_cart(finalData);
         if (res?.success) {
             console.log('success' + res?.message);
@@ -54,17 +53,41 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         }
     }
 
-    const AddToBookmark = async () => {
+    const AddToBookmark  =  async () => {
         const bmarkData = await get_all_bookmark_items(user?._id)
-        if(bmarkData?.data?.length > 0){
-            return false
-        }else {
-            const finalData = { productID: id, userID: user?._id }
+
+        if (bmarkData?.data?.length > 0){
+            /* au moins un bookmark existe déjà
+               on doit vérifier tous les objets retournés pour comparer avec l'id 
+               du produit qui vient d'être bookmarké */
+
+            bmarkData?.data.map((item: { productID: { _id: any; }; }) => {
+                const book = [...arrBook,item.productID?._id]
+                SetArrBook(book)
+            })
+
+            if(arrBook.includes(product?._id)){
+                console.log('id retrouve dans la liste ' + product?._id)
+            }else{
+                const finalData = { productID: product?._id, userID: user?._id }
+                const res = await bookmark_product(finalData);
+                if (res?.success) {
+                    console.log('bookmark added')
+                    /* le bookmark a bien été ajouté */
+                } else {
+                    console.log('An error occured (AddToBookmark) : ' + res?.message)
+                }
+            }
+
+        } else {
+            /* Il n'y a pas de bookmarks dans la liste, on peut ajouter */
+            const finalData = { productID: product?._id, userID: user?._id }
             const res = await bookmark_product(finalData);
             if (res?.success) {
-                console.log('success' + res?.message);
+                console.log('bookmark added')
+                // le bookmark a bien été ajouté
             } else {
-                throw new Error(res?.message)
+                console.log('An error occured (AddToBookmark) : ' + res?.message)
             }
         }
     }
