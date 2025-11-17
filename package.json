@@ -15,6 +15,9 @@
     "preinstall": "npm install --platform=linux --arch=x64 sharp"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^7.1.0",
+    "@fortawesome/free-brands-svg-icons": "^7.1.0",
+    "@fortawesome/react-fontawesome": "^3.1.0",
     "@headlessui/react": "^2.2.1",
     "@hookform/error-message": "^2.0.1",
     "@reduxjs/toolkit": "^1.9.7",
