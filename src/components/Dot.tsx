@@ -6,13 +6,14 @@ interface DotProps {
   left: number
   _id: string
   label: string
+  _slug: string
 }
 
-export default function Dot ({ top, left, _id, label }: DotProps) {
+export default function Dot ({ top, left, _id, label, _slug }: DotProps) {
   const router = useRouter()
   const [isHovered,setIsHovered] = useState(false)
   return (
-    <div onClick={() => router.push(`/product/product-detail/${_id}`)}><a
+    <div onClick={() => router.push(`/product/product-detail/${_slug}`)}><a
 
       className="absolute w-4 h-4 bg-white rounded-full cursor-pointer animate-blink z-10 hover:bg-gray-300 hover:scale-110 transition-all duration-300"
       style={{ top: `${top}%`, left: `${left}%` }}

@@ -1,13 +1,14 @@
 "use client"
 
 import React from 'react'
-import {  useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { RootState } from '@/Store/store'
 import Loading from '@/app/loading'
 import Dot from '@/components/Dot'
 
 type ProductData = {
     productName: string,
+    productSlug: string,
     productFeatured: Boolean,
     _id : string
 };
@@ -45,6 +46,7 @@ export default function HomepageFeaturedProducts() {
                                     left={coords[i][1]}
                                     _id={item?._id}
                                     label = {item?.productName}
+                                    _slug = {item?.productSlug}
                                     key={item?._id} 
                                     />
                         })

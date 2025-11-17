@@ -82,6 +82,20 @@ export const add_new_product = async (formData: any) => {
     }
   }
 
+  export const get_product_by_slug = async (slug:string) => {
+    try {
+      console.log(`Fetching product for slug: ${slug}`);
+      const res = await fetch(`/api/common/product/get-product-by-slug?slug=${slug}`, {
+        method: 'GET',
+      })
+  
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      console.log('Error in getting product by Slug (service) =>', error)
+    }
+  }
+
   export const get_product_by_category_id = async (id:string) => {
     try {
       const res = await fetch(`/api/common/product/get-product-by-category-id?id=${id}`, {

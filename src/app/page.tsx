@@ -12,12 +12,18 @@ import { setUserData } from '@/utils/UserDataSlice'
 import { RootState } from '@/Store/store'
 import BackgroundContainer from '@/components/BackgroundContainer'
 import HomepageFeaturedProducts from '@/components/HomepageFeaturedProducts'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
   const dispatch = useDispatch();
   const categoryLoading = useSelector((state: RootState) => state.Admin.catLoading)
   const productLoading = useSelector((state: RootState) => state.Admin.productLoading)
   const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    toast.warning("Some weird things are going on, your eyes may not see properly anymore")
+  }, [])
 
   useEffect(() => {
     const userData = localStorage.getItem('user');
@@ -64,7 +70,7 @@ export default function Home() {
             <Footer />
           </>
       }
-
+    <ToastContainer />
     </>
   )
 }

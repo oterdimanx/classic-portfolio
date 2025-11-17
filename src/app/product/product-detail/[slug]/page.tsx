@@ -3,7 +3,7 @@
 import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import useSWR from 'swr'
-import { get_product_by_id } from '@/Services/Admin/product'
+import { get_product_by_slug } from '@/Services/Admin/product'
 import Loading from '@/app/loading'
 import { useDispatch } from 'react-redux'
 import { setUserData } from '@/utils/UserDataSlice'
@@ -32,9 +32,9 @@ type ProductData = {
 export default function Page() {
     const dispatch = useDispatch();
     const [prodData, setprodData] = useState<ProductData | undefined>(undefined);
-    const useParamObject = useParams<{ id: string }>()
-    const id  = useParamObject.id;
-    const { data, isLoading } = useSWR('/gettingProductbyID', () => get_product_by_id(id))
+    const useParamObject = useParams<{ slug: string }>()
+    const slug  = useParamObject.slug;
+    const { data, isLoading } = useSWR('/gettingProductbySLUG', () => get_product_by_slug(slug))
 
     useEffect(() => {
         const userData = localStorage.getItem('user');
