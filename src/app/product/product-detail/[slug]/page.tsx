@@ -34,7 +34,7 @@ export default function Page() {
     const [prodData, setprodData] = useState<ProductData | undefined>(undefined);
     const useParamObject = useParams<{ slug: string }>()
     const slug  = useParamObject.slug;
-    const { data, isLoading } = useSWR('/gettingProductbySLUG', () => get_product_by_slug(slug))
+    const { data, isLoading } = useSWR('/gettingProductbySlug', () => get_product_by_slug(slug))
 
     useEffect(() => {
         const userData = localStorage.getItem('user');
