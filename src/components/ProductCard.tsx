@@ -15,7 +15,8 @@ type ProductData = {
     productName: string,
     productImage: string,
     productSlug: string,
-    productPrice: Number,
+    productQuantity: number,
+    productPrice: number,
     productFeatured: Boolean,
     productCategory: {
         categoryName: string,
@@ -25,15 +26,13 @@ type ProductData = {
     _id: string
 };
 
-
 type User = {
     email : string , 
     name : string , 
     _id : string,
 }
 
-
-export default function ProductCard({ productName, productImage, productPrice, _id, productSlug }: ProductData) {
+export default function ProductCard({ productName, productImage, productPrice, _id, productSlug, productQuantity }: ProductData) {
 
     const router = useRouter();
     const user = useSelector((state: RootState) => state.User.userData) as User | null
@@ -47,6 +46,7 @@ export default function ProductCard({ productName, productImage, productPrice, _
             console.log(res?.message);
             toast.warning(res?.message)
         } else {
+            toast.warning('Le produit est déjà dans votre panier')
             console.log('An error occured (AddToCart) : ' + res?.message)
         }
     }
@@ -66,23 +66,31 @@ export default function ProductCard({ productName, productImage, productPrice, _
             })
 
             if(arrBook.includes(_id)){
-            //console.log('id retrouve dans la liste ' + _id)
-              toast.warning("Le bookmark existe déjà dans vos favoris", {
-                position: 'bottom-center',
-                className: 'custom-warning-shadow toast-message'
-              })
+                console.log('id retrouve dans la liste ' + _id)
+                /*
+                toast.warning("Le bookmark existe déjà dans vos favoris 1", {
+                    toastId: 'bookmark-error2',
+                    autoClose: 1000, 
+                    position: 'bottom-center',
+                    className: 'custom-warning-shadow toast-message'
+                })*/
             }else{
+
                 const finalData = { productID: _id, userID: user?._id }
                 const res = await bookmark_product(finalData);
                 if (res?.success) {
                     //console.log('bookmark added')
                     toast("Le bookmark a été ajouté aux favoris", {
+                        toastId: 'bookmark-error3',
+                        autoClose: 1000, 
                         position: 'bottom-center',
                         className: 'custom-warning-shadow toast-message'
                     })
                     /* le bookmark a bien été ajouté */
                 } else {
                     toast.warning("Le bookmark est déjà dans vos favoris", {
+                        toastId: 'bookmark-error4',
+                        autoClose: 1000, 
                         position: 'bottom-center',
                         className: 'custom-warning-shadow toast-message'
                     })
@@ -97,6 +105,8 @@ export default function ProductCard({ productName, productImage, productPrice, _
             if (res?.success) {
                 //console.log('bookmark added')
                 toast("Le bookmark a été ajouté aux favoris", {
+                    toastId: 'bookmark-error5',
+                    autoClose: 1000, 
                     position: 'bottom-center',
                     className: 'custom-warning-shadow toast-message'
                 })
@@ -104,6 +114,8 @@ export default function ProductCard({ productName, productImage, productPrice, _
             } else {
                 console.log('An error occured (AddToBookmark) : ' + res?.message)
                 toast("Créez un compte et connectez-vous pour gérer vos favoris", {
+                    toastId: 'bookmark-error6',
+                    autoClose: 1000, 
                     position: 'bottom-center',
                     className: 'custom-warning-shadow toast-message'
                 })
@@ -127,11 +139,19 @@ export default function ProductCard({ productName, productImage, productPrice, _
         <div className="card text-black cursor-pointer card-compact m-3 w-80 bg-white shadow-xl relative">
             <div onClick={() => router.push(`/product/product-detail/${productSlug}`)} className='w-full rounded relative h-60'>
                 <Image src={productImage || '/ryu.gif'} alt='no Image' className='rounded' fill sizes='50vw' />
+                {(productQuantity === 0 || productQuantity === null) && (
+                    <div className="absolute top-0 right-0 w-[120px] h-[120px] overflow-hidden z-10 pointer-events-none">
+                        <div className="absolute top-6 -right-9 bg-gradient-to-b from-red-500 to-red-700 text-white text-center font-bold text-xs uppercase py-1.5 w-[160px] rotate-45 shadow-[0_4px_10px_rgba(0,0,0,0.4)] 
+                        before:content-[''] before:absolute before:bottom-[-8px] before:border-t-[8px] before:border-t-red-800 before:border-l-[8px] before:border-l-transparent before:border-r-[8px] before:border-r-transparent before:left-0
+                        after:content-[''] after:absolute after:bottom-[-8px] after:border-t-[8px] after:border-t-red-800 after:border-l-[8px] after:border-l-transparent after:border-r-[8px] after:border-r-transparent after:right-0">
+                        &nbsp;&nbsp;&nbsp;Out of Stock
+                        </div>
+                    </div>
+                )}
             </div>
             <div className="card-body">
                 <h2 className="card-title" onClick={() => router.push(`/product/product-detail/${productSlug}`)}>{productName} </h2>
-                <p className='font-semibold' onClick={() => router.push(`/product/product-detail/${productSlug}`)}>{`Rs ${productPrice}`}</p>
-
+                <p className='font-semibold' onClick={() => router.push(`/product/product-detail/${productSlug}`)}>&euro;{` ${productPrice}`}</p>
                 <div className="card-actions justify-end z-20">
                     <LearnMore productLink={productSlug} />
                     <button onClick={AddToCart} className="btn btn-circle btn-ghost"><BsCartPlus className="text-2xl text-red-600 font-semibold" /></button>

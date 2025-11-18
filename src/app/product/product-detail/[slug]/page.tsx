@@ -67,7 +67,7 @@ export default function Page() {
                                 prodData?.productImage || '/ryu.gif'
                             ],
                             price: prodData?.productPrice || 0,
-                            inStock: true,
+                            inStock: prodData?.productQuantity ?? prodData?.productQuantity === 0 ? true : false,
                             isFeatured: prodData?.productFeatured ? true : false,
                             sizeGuideUrl: "/logo_zyy-05-black.png",
                             _id: prodData?._id || 'unk_zyy'

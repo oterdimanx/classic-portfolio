@@ -49,9 +49,11 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         const finalData = { productID: product._id, userID: user?._id }
         const res = await add_to_cart(finalData);
         if (res?.success) {
-            console.log('success' + res?.message);
+            console.log(res?.message);
+            toast.warning(res?.message)
         } else {
-            throw new Error(res?.message)
+            toast.warning('Le produit est déjà dans votre panier')
+            console.log('An error occured (AddToCart) : ' + res?.message)
         }
     }
 

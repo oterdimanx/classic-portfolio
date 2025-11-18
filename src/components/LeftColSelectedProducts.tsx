@@ -10,7 +10,8 @@ type ProductData = {
     productName: string,
     productImage: string,
     productSlug: string,
-    productPrice: Number,
+    productPrice: number,
+    productQuantity: number,
     productFeatured: Boolean,
     productCategory : {
         categoryName : string,
@@ -38,7 +39,6 @@ export default function LeftColSelectedProducts( props: any ) {
 
   const filteredProducts = CategoryProducts?.slice(0, 50)
 
-
   return (
     <>
       <div className="w-full h-screen dark:text-black bg-gray-50 py-4 px-2 font-[Poppin]">
@@ -54,6 +54,7 @@ export default function LeftColSelectedProducts( props: any ) {
                     productFeatured = {item?.productFeatured}
                     productImage = {item?.productImage}
                     productSlug = {item?.productSlug}
+                    productQuantity = {item?.productQuantity}
                     productCategory={item?.productCategory}
                     _id={item?._id}
                     key={item?._id + ii++} />

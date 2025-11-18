@@ -18,6 +18,7 @@ type ProductData = {
     productImage: string,
     productSlug: string,
     productPrice: Number,
+    productQuantity: Number,
     productFeatured: Boolean,
     productCategory : {
         categoryName : string,
@@ -98,7 +99,6 @@ export default function Shop() {
                                         href={"/PortFolio-All-Images"}
                                         onClick={()=>{
                                             SetCategoryId(item?._id)
-
                                         }}
                                         key={ii++}
                                     >{item?.categoryName}</Link>
