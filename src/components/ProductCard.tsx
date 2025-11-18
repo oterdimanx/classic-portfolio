@@ -154,8 +154,14 @@ export default function ProductCard({ productName, productImage, productPrice, _
                 <p className='font-semibold' onClick={() => router.push(`/product/product-detail/${productSlug}`)}>&euro;{` ${productPrice}`}</p>
                 <div className="card-actions justify-end z-20">
                     <LearnMore productLink={productSlug} />
-                    <button onClick={AddToCart} className="btn btn-circle btn-ghost"><BsCartPlus className="text-2xl text-red-600 font-semibold" /></button>
-                    <button onClick={HandleAddToBookmarkClick} className="btn btn-circle btn-ghost absolute top-0 right-0"><MdFavorite className={`text-2xl text-red-600 font-semibold ${animate ? 'animate-beat' : ''}`} onAnimationEnd={handleAnimationEnd} /></button>
+                    
+
+                    <button onClick={AddToCart} className="btn btn-circle btn-ghost" disabled={productQuantity === 0 || productQuantity === null}>
+                        <BsCartPlus className="text-2xl text-red-600 font-semibold" />
+                    </button>
+                    <button onClick={HandleAddToBookmarkClick} className="btn btn-circle btn-ghost absolute top-0 right-0">
+                        <MdFavorite className={`text-2xl text-red-600 font-semibold ${animate ? 'animate-beat' : ''}`} onAnimationEnd={handleAnimationEnd} />
+                    </button>
                 </div>
             </div>
         </div>
