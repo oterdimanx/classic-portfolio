@@ -146,6 +146,10 @@ body {
     top: 0px;
     margin-left: -20px;
   }
+
+  .product-details-text-container {
+    margin-left: 0px;
+  }
   
 }
 
@@ -165,3 +169,4 @@ body {
   }
 
 }
+

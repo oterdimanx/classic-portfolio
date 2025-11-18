@@ -70,7 +70,7 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                     </label>
                 </div>
             </div>
-            <div className={`secondaryNav bg-white-50  ${!isHomePage ? "px-0 relative -tracking-[0.06em] -left-[2px] -top-[0px]" : "px-0 relative -tracking-[0.06em] -left-[2px] -top-[0px]"}`}>
+            <div className={`secondaryNav bg-white-50 ${!isHomePage ? "px-0 relative -tracking-[0.06em] -left-[2px] -top-[0px]" : "px-0 relative -tracking-[0.06em] -left-[2px] -top-[0px]"}`}>
                 <ul className="secondaryNavHeader">
                     <li>
                         <div className="text-sm m-w-full overflow-x-auto">

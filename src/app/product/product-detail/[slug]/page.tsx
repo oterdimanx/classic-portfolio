@@ -51,7 +51,7 @@ export default function Page() {
         <div>
           <Navbar />
         </div>
-        <div className="w-full h-full dark:text-black lg:h-screen bg-white py-4 px-2">
+        <div className="w-full h-full dark:text-black lg:h-4/5 bg-white py-4 px-2">
 
             <div className="lg:h-4/5 py-4 px-4 flex items-center justify-center">
                 {
@@ -64,7 +64,7 @@ export default function Page() {
                             title: prodData?.productName || "Loading Product Name",
                             description: prodData?.productDescription || "Loading Product Description",
                             images: [
-                                prodData?.productImage || '/images98.jpg'
+                                prodData?.productImage || '/ryu.gif'
                             ],
                             price: prodData?.productPrice || 0,
                             inStock: true,

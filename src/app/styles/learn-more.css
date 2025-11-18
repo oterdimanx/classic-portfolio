@@ -76,7 +76,7 @@ button {
   }
   &:hover {
     .circle {
-      animation: rollout 1.5s forwards;
+      animation: rollout 0.5s forwards;
       .icon {
         &.arrow {
         background: #fff;

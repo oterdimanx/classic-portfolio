@@ -111,12 +111,10 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     }
 
   return (
-    <div className="flex flex-col lg:flex-row justify-end bg-white text-black p-6 max-w-7xl mx-auto font-[Poppin]">
-      <div className="w-full lg:max-w-[700px] mr-[25%]" {...handlers}>
-        <div className="border rounded overflow-hidden h-[450px] relative">
-
-          {product.images.map((src, index) => (
-            <Transition
+<div className="flex flex-col lg:flex-row gap-6 bg-white text-black p-6 max-w-7xl mx-auto font-[Poppin]">
+  <div className="w-full lg:w-1/2 mr-[10%]" {...handlers}>
+    <div className="border rounded overflow-hidden relative aspect-[4/3]">  {/* Use aspect-ratio instead of fixed height for responsiveness */}
+            {/*<Transition
               as="div"
               key={index}
               show={currentImage === index}
@@ -126,14 +124,17 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               leave="transition-transform transform duration-500 ease-out"
               leaveFrom="translate-x-0 opacity-100"
               leaveTo="-translate-x-full opacity-0"
-              className="absolute inset-0"
-            >
+              className="inset-0"
+            >the img tag goes here to reactivate transition (inside product.images.map</Transition>**/}
+          {product.images.map((src, index) => (
+
               <img
                 src={src}
                 alt={`Product ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover "
+                key={`${index + 1}`}
               />
-            </Transition>
+            
           ))}
           {product.isFeatured && (
             <div className="opacity-[50%] relative -mt-[4%] ml-[25%] pl-16 p-3 lg:max-w-[100%] origin-top-right rotate-0 translate-x-1/3 translate-y-1/3 bg-black text-white text-sm uppercase rounded shadow-lg">
@@ -169,7 +170,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
       </div>
 
-      <div className="w-full lg:max-w-[450px] space-y-6 ml-2">
+      <div className="w-full lg:w-1/2 flex flex-col gap-4 -ml-[5%] product-details-text-container">
         <h1 className="text-2xl font-bold">{product.title}</h1>
 
         <div className="text-2xl font-semibold text-green-700">
@@ -190,7 +191,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           <h2 className="font-semibold mb-2">Description</h2>
           <p className="text-base leading-relaxed whitespace-pre-line">{product.description}</p>
         </div>
-        
+
         <ToastContainer />
 { /* 
         <div>

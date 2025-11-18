@@ -82,6 +82,10 @@ export default function ProductCard({ productName, productImage, productPrice, _
                     })
                     /* le bookmark a bien été ajouté */
                 } else {
+                    toast.warning("Le bookmark est déjà dans vos favoris", {
+                        position: 'bottom-center',
+                        className: 'custom-warning-shadow toast-message'
+                    })
                     console.log('An error occured (AddToBookmark) : ' + res?.message)
                 }
             }
@@ -118,9 +122,8 @@ export default function ProductCard({ productName, productImage, productPrice, _
         <>
         <div className="card text-black cursor-pointer card-compact m-3 w-80 bg-white shadow-xl relative">
             <div onClick={() => router.push(`/product/product-detail/${productSlug}`)} className='w-full rounded relative h-60'>
-                <Image src={productImage || '/images98.jpg'} alt='no Image' className='rounded' fill sizes='50vw' />
+                <Image src={productImage || '/ryu.gif'} alt='no Image' className='rounded' fill sizes='50vw' />
             </div>
-
             <div className="card-body">
                 <h2 className="card-title" onClick={() => router.push(`/product/product-detail/${productSlug}`)}>{productName} </h2>
                 <p className='font-semibold' onClick={() => router.push(`/product/product-detail/${productSlug}`)}>{`Rs ${productPrice}`}</p>
@@ -131,7 +134,7 @@ export default function ProductCard({ productName, productImage, productPrice, _
                     <button onClick={HandleAddToBookmarkClick} className="btn btn-circle btn-ghost absolute top-0 right-0"><MdFavorite className={`text-2xl text-red-600 font-semibold ${animate ? 'animate-beat' : ''}`} onAnimationEnd={handleAnimationEnd} /></button>
                 </div>
             </div>
-        </div><ToastContainer />
-        </>
+        </div>
+        <ToastContainer /></>
     )
 }
