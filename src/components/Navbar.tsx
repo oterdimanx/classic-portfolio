@@ -58,9 +58,9 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
     }, []);
 
     return (
-        <div className={`navbar ${!Scrolled && isHomePage ? "" : "bg-white/95"} mainNav top-0 left-0 pb-0 pt-0 ${isHomePage ? "fixed z-10" : "border-b-2 border-b-red-900"} `}>
+        <div className={`navbar ${!Scrolled && isHomePage ? "" : "bg-white/95"} mainNav top-0 left-0 pb-0 pt-0 ${isHomePage ? "fixed z-10" : "border-b-2 border-b-red-900"}`} style={{ '--navbar-padding': '0' } as React.CSSProperties}>
             <div className={`flex-none block ${!isHomePage ? "border-r-2 border-r-red-900 h-[130px] top-menu-image-container" : "h-[130px]"}`}>
-                <div className="dropdown">
+                <div className="dropdown hp-img-container">
                     <label className="text-white">
                     {
                         isHomePage ? 
