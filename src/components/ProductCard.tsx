@@ -154,7 +154,6 @@ export default function ProductCard({ productName, productImage, productPrice, _
                 <p className='font-semibold' onClick={() => router.push(`/product/product-detail/${productSlug}`)}>&euro;{` ${productPrice}`}</p>
                 <div className="card-actions justify-end z-20">
                     <LearnMore productLink={productSlug} />
-                    
 
                     <button onClick={AddToCart} className="btn btn-circle btn-ghost" disabled={productQuantity === 0 || productQuantity === null}>
                         <BsCartPlus className="text-2xl text-red-600 font-semibold" />
