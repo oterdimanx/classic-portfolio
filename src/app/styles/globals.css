@@ -104,6 +104,25 @@ body {
   to { opacity: 1 }
 }
 
+.animate-beat {
+  animation: beat 0.5s ease-in-out;  /* Duration and timing—adjust as needed */
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.8);  /* Expand a little—adjust scale for bigger/smaller */
+    opacity: 0.6;          /* Fade slightly mid-way—remove if no fade wanted */
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 .animate-fadeIn {
   animation: fadeIn 2s ease forwards;
 }

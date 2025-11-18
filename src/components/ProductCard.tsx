@@ -34,9 +34,11 @@ type User = {
 
 
 export default function ProductCard({ productName, productImage, productPrice, _id, productSlug }: ProductData) {
+
     const router = useRouter();
     const user = useSelector((state: RootState) => state.User.userData) as User | null
     const [arrBook, SetArrBook] = useState<any[]>([])
+    const [animate, setAnimate] = useState(false)
 
     const AddToCart = async () => {
         const finalData = { productID: _id, userID: user?._id }
@@ -50,6 +52,7 @@ export default function ProductCard({ productName, productImage, productPrice, _
     }
 
     const AddToBookmark  =  async () => {
+
         const bmarkData = await get_all_bookmark_items(user?._id)
 
         if (bmarkData?.data?.length > 0){
@@ -100,6 +103,17 @@ export default function ProductCard({ productName, productImage, productPrice, _
         }
     }
 
+    const HandleAddToBookmarkClick = () => {
+        if (!animate) {  // Prevent multiple triggers if clicked rapidly
+            setAnimate(true);
+            AddToBookmark();
+        }
+    };
+
+    const handleAnimationEnd = () => {
+        setAnimate(false);
+    };
+
     return (
         <>
         <div className="card text-black cursor-pointer card-compact m-3 w-80 bg-white shadow-xl relative">
@@ -114,7 +128,7 @@ export default function ProductCard({ productName, productImage, productPrice, _
                 <div className="card-actions justify-end z-20">
                     <LearnMore productLink={productSlug} />
                     <button onClick={AddToCart} className="btn btn-circle btn-ghost"><BsCartPlus className="text-2xl text-red-600 font-semibold" /></button>
-                    <button onClick={AddToBookmark} className="btn btn-circle btn-ghost absolute top-0 right-0"><MdFavorite className="text-2xl text-red-600 font-semibold" /></button>
+                    <button onClick={HandleAddToBookmarkClick} className="btn btn-circle btn-ghost absolute top-0 right-0"><MdFavorite className={`text-2xl text-red-600 font-semibold ${animate ? 'animate-beat' : ''}`} onAnimationEnd={handleAnimationEnd} /></button>
                 </div>
             </div>
         </div><ToastContainer />

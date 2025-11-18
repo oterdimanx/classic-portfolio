@@ -1,8 +1,7 @@
 "use client"
 
 import Cookies from 'js-cookie'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { TailSpin } from 'react-loader-spinner'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,6 +10,7 @@ import CartCard from '@/components/CartCard'
 import {  get_all_cart_Items } from '@/Services/common/cart'
 import { setCart } from '@/utils/CartSlice'
 import { setNavActive } from '@/utils/AdminNavSlice'
+import router from 'next/router'
 
 interface userData {
     email: String,
@@ -32,10 +32,16 @@ type Data = {
         _id: string,
     },
     _id: string,
-    quantity: number,
+    quantity: 
+    number,
 }
 
-export default function CartOverlay() {
+interface CartOverlayProps {
+    isOpened?: boolean;
+    onClose: () => void;
+}
+
+export default function CartOverlay({ isOpened, onClose }: CartOverlayProps) {
 
     const [loader, setLoader] = useState(false)
     const Router = useRouter();
@@ -43,6 +49,7 @@ export default function CartOverlay() {
     const user = useSelector((state: RootState) => state.User.userData) as userData | null
     const cartData = useSelector((state: RootState) => state.Cart.cart) as Data[] | null;
     const [loading, setLoading] = useState(true)
+    const pathname = usePathname()
 
     useEffect(() => {
         if (!Cookies.get('token') || user === null) {
@@ -75,7 +82,6 @@ export default function CartOverlay() {
         setLoading(false)
     }
 
-
     function calculateTotalPrice(myCart: Data[]) {
         const totalPrice = myCart?.reduce((acc, item) => {
             return acc + (Number(item?.quantity) * Number(item?.productID?.productPrice));
@@ -85,6 +91,13 @@ export default function CartOverlay() {
     }
 
     const totalPrice = calculateTotalPrice(cartData as Data[])
+
+    const handleShopNow = () => {
+        onClose();
+        if (pathname !== '/') {
+            Router.push('/');  // Only navigate if not already on homepage
+        }
+    };
 
     return (
         <>
@@ -114,7 +127,7 @@ export default function CartOverlay() {
                                     cartData?.length === 0 ?
                                         <div className="w-full h-full flex flex-col">
                                             <p className="my-4 mx-2 text-lg font-semibold">No Item Available in Cart</p>
-                                            <Link href={"/"} className="btn text-white">Shop Now</Link>
+                                            <button onClick={handleShopNow} className="btn text-white">Shop Now</button>
                                         </div>
                                         :
                                         cartData?.map((item: Data) => {
@@ -129,12 +142,12 @@ export default function CartOverlay() {
                                 }
                             </div>
                             <div className="w-full  py-2 my-2 flex justify-end">
-                                <h1 className="py-2 tracking-widest mb-2 border-b px-6 border-orange-600 text-sm flex flex-col">  Original Price  <span className="text-xl font-extrabold">Rs {totalPrice || 0}</span> </h1>
-                                <h1 className="py-2 tracking-widest mb-2 border-b px-6 border-orange-600 text-sm flex flex-col">  Shipping Price  <span className="text-xl font-extrabold">Rs {500}</span> </h1>
-                                <h1 className="py-2 tracking-widest mb-2 border-b px-6 border-orange-600 text-sm flex flex-col">  tax Price  <span className="text-xl font-extrabold">Rs {100}</span> </h1>
+                                <h1 className="py-2 tracking-widest mb-2 border-b px-6 border-orange-600 text-sm flex flex-col">  Original Price  <span className="text-xl font-extrabold">&euro; {totalPrice || 0}</span> </h1>
+                                <h1 className="py-2 tracking-widest mb-2 border-b px-6 border-orange-600 text-sm flex flex-col">  Shipping Price  <span className="text-xl font-extrabold">&euro; {5}</span> </h1>
+                                <h1 className="py-2 tracking-widest mb-2 border-b px-6 border-orange-600 text-sm flex flex-col">  tax Price  <span className="text-xl font-extrabold">&euro; {0}</span> </h1>
                             </div>
                             <div className="w-full py-2 my-2 flex justify-end">
-                                <h1 className="py-2 tracking-widest mb-2 border-b px-6 border-orange-600 text-sm flex flex-col">  Total Order Price  <span className="text-xl font-extrabold">Rs {totalPrice + 600}</span> </h1>
+                                <h1 className="py-2 tracking-widest mb-2 border-b px-6 border-orange-600 text-sm flex flex-col">  Total Order Price  <span className="text-xl font-extrabold">&euro; {totalPrice + 5}</span> </h1>
                             </div>
                         </div>
 

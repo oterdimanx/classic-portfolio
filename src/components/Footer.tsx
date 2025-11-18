@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 export default function Footer() {
   const router = useRouter();
     return (
-        <footer className="w-full text-center py-4 text-sm text-neutral-400 border-t border-neutral-700">
+        <footer className="w-full text-center py-4 text-sm text-neutral-400 border-t border-neutral-700 bg-[black]">
         <div className="relative inline">
           © {new Date().getFullYear()} Welcome to NanoMeT's Backend Portfolio.
         </div>
@@ -17,18 +17,18 @@ export default function Footer() {
         </div>
         <div className="relative inline">
           <div className="front relative bg-[gold] text-lime-500 text-[8vh] font-black font-serif">
-            <div className="absolute top-0 left-0 w-full h-full animate-apptitle"
+            <div className="relative top-0 left-0 w-full h-full animate-apptitle"
               style={{
                 background: 'radial-gradient(circle, gold 40%, transparent 40%)',
                 backgroundSize: '.5vh .5vh',
                 backgroundPosition: '-.5vh',
               }} />
-            <div className="absolute top-[50px] left-[10px] w-full h-full text-[gold] [text-shadow:-7px_0px_black,-1px_-1px_black,-5px_5px_black]">
+            <div className="bg-[transparent] absolute top-[50px] left-[10px] w-full h-full text-[gold] [text-shadow:-7px_0px_black,-1px_-1px_black,-5px_5px_black]">
               <div className="font-pixel">Portfolio</div>
-              <div className="droplet absolute left-[64%] top-[77px] transform -translate-x-1/2 mt-2 w-2 h-2" />
+              <div className="bg-[transparent] relative droplet left-[64%] top-[40px] transform -translate-x-1/2 mt-2 w-2 h-2" />
             </div>
           </div>
         </div>
-    </footer>
+        </footer>
     )
 }

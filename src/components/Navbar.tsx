@@ -133,7 +133,7 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                             </div>
 
                             <div className="p-6">
-                                <CartOverlay />
+                                <CartOverlay isOpened={isCartOpened} onClose={() => setIsCartOpened(false)} />
                             <button
                                 onClick={handleCheckout}
                                 className="w-full bg-black text-white py-2 rounded hover:bg-gray-800"

@@ -14,6 +14,8 @@ import { setCart } from '@/utils/CartSlice'
 import { setNavActive } from '@/utils/AdminNavSlice'
 import { create_a_new_order } from '@/Services/common/order'
 import Navbar from '@/components/Navbar'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 type Inputs = {
     fullName: string,
@@ -110,9 +112,9 @@ export default function Page() {
             },
             paymentMethod : 'PayPal',
             itemsPrice : totalPrice,
-            taxPrice : 100,
-            shippingPrice : 500,
-            totalPrice : totalPrice + 100 + 500,
+            taxPrice : 0,
+            shippingPrice : 5,
+            totalPrice : totalPrice + 0 + 5,
             isPaid : true,
             paidAt : new Date(),
             isDelivered : false,
@@ -121,7 +123,8 @@ export default function Page() {
 
         const res =  await create_a_new_order(finalData);
         if(res?.success){
-            //toast.success(res?.message)
+            
+            toast.success(res?.message)
             
             setTimeout(() => {
                 Router.push('/')
@@ -252,7 +255,7 @@ export default function Page() {
                 )
             }
 
-        </div>
+        </div><ToastContainer/>
         </>
     )
 }

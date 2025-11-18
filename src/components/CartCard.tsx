@@ -3,7 +3,6 @@
 
 import { delete_a_cart_item, get_all_cart_Items, update_cart_items } from '@/Services/common/cart'
 import { RootState } from '@/Store/store'
-import Cart from '@/model/Cart'
 import { setCart } from '@/utils/CartSlice'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -149,7 +148,7 @@ export default function CartCard({ productID, userID, _id , quantity, isOverlay 
                 height={150} 
                 className="rounded" />
             <h3 className="font-semibold text-lg">
-                Rs {productID?.productPrice}
+                &euro; {productID?.productPrice}
             </h3>
             <div className="flex  justify-center items-center">
                 <button 

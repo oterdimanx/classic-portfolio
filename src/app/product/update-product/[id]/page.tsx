@@ -88,7 +88,6 @@ const uploadImages = async (file: File) => {
   });
 }
 
-
 const maxSize = (value: File) => {
     const fileSize = value.size / 61440 / 61440
     return fileSize < 1 ? false : true
