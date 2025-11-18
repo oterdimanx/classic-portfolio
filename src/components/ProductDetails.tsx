@@ -166,7 +166,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         </div>
 
         <div className="flex gap-2 mt-4 justify-center">
-            <button onClick={AddToCart} className="hover:bg-white btn bg-white m-2 lg:w-52 h-10 flex items-center justify-center"> 
+            <button onClick={AddToCart} className={product.inStock === false ? `m-2 flex items-center justify-center lg:w-52 ` : `hover:bg-white btn bg-white m-2 lg:w-52 h-10 flex items-center justify-center`} disabled={product.inStock === false}> 
               <BiCartAdd className="text-3xl mx-2 text-black bg-white" /> 
             </button>
             <button onClick={AddToBookmark} className="hover:bg-white btn bg-white m-2 lg:w-52 h-10 flex items-center justify-center text-black-600 hover:text-red-800"> 

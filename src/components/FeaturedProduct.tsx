@@ -7,10 +7,11 @@ import { RootState } from '@/Store/store'
 import Loading from '@/app/loading'
 
 type ProductData = {
+    productQuantity: number
     productName: string,
     productImage: string,
     productSlug: string,
-    productPrice: Number,
+    productPrice: number,
     productFeatured: Boolean,
     productCategory : {
         categoryName  : string ,
@@ -48,14 +49,15 @@ export default function FeaturedProduct() {
                                 :
                                 filteredProducts?.map((item: ProductData) => {
                                     return <ProductCard
-                                        productName = {item?.productName}
-                                        productPrice = {item?.productPrice}
-                                        productFeatured = {item?.productFeatured}
-                                        productImage = {item?.productImage}
+                                        productName={item?.productName}
+                                        productPrice={item?.productPrice}
+                                        productFeatured={item?.productFeatured}
+                                        productImage={item?.productImage}
                                         productCategory={item?.productCategory}
-                                        productSlug = {item?.productSlug}
+                                        productSlug={item?.productSlug}
                                         _id={item?._id}
-                                        key={item?._id} />
+                                        key={item?._id} 
+                                        productQuantity={item?.productQuantity} />
                                 })
                             }
                         </>
