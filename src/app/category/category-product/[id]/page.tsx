@@ -16,11 +16,12 @@ interface pageParam {
 }
 
 type ProductData = {
+    productQuantity: number
     productName: string,
     productImage: string,
     productSlug: string,
-    productPrice: Number,
-    productFeatured: Boolean,
+    productPrice: number,
+    productFeatured: boolean,
     productCategory : {
         categoryName : string,
         categoryDescription  :string ,
@@ -58,14 +59,16 @@ export default function Page() {
                          {
                                 thisProduct?.map((item: ProductData) => {
                                     return <ProductCard
-                                        productName = {item?.productName}
-                                        productPrice = {item?.productPrice}
-                                        productFeatured = {item?.productFeatured}
-                                        productImage = {item?.productImage}
-                                        productSlug = {item?.productSlug}
+                                        productName={item?.productName}
+                                        productPrice={item?.productPrice}
+                                        productFeatured={item?.productFeatured}
+                                        productImage={item?.productImage}
+                                        productSlug={item?.productSlug}
                                         productCategory={item?.productCategory}
                                         _id={item?._id}
-                                        key={item?._id} />
+                                        key={item?._id} 
+                                        productQuantity={item?.productQuantity} 
+                                        />
                                 })
                             }
                     </>
