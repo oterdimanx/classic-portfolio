@@ -103,6 +103,10 @@ export default function ProductCard({ productName, productImage, productPrice, _
                 // le bookmark a bien été ajouté
             } else {
                 console.log('An error occured (AddToBookmark) : ' + res?.message)
+                toast("Créez un compte et connectez-vous pour gérer vos favoris", {
+                    position: 'bottom-center',
+                    className: 'custom-warning-shadow toast-message'
+                })
             }
         }
     }

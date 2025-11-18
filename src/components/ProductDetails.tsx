@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Transition } from '@headlessui/react';
+//import { Transition } from '@headlessui/react';
 import { useSwipeable } from 'react-swipeable';
 import { BiCartAdd } from 'react-icons/bi'
 import { RiBookMarkFill } from 'react-icons/ri'
@@ -106,6 +106,10 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                 // le bookmark a bien été ajouté
             } else {
                 console.log('An error occured (AddToBookmark) : ' + res?.message)
+                toast("Créez un compte et connectez-vous pour gérer vos favoris", {
+                    position: 'bottom-center',
+                    className: 'custom-warning-shadow toast-message'
+                })
             }
         }
     }
