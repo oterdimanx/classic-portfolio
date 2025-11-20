@@ -148,12 +148,24 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                 className="w-full h-full object-cover "
                 key={`${index + 1}`}
               />
-            
+
           ))}
+          {
+            product.inStock === false && (
+              <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+                <span className="text-white text-3xl font-bold">Out of Stock</span>
+              </div>
+            )
+          }
           {product.isFeatured && (
-            <div className="opacity-[50%] relative -mt-[4%] ml-[25%] pl-16 p-3 lg:max-w-[100%] origin-top-right rotate-0 translate-x-1/3 translate-y-1/3 bg-black text-white text-sm uppercase rounded shadow-lg">
-              Featured
-            </div>
+                    <div className="absolute top-0 right-0 w-[125px] h-[125px] z-10 pointer-events-none">
+                        <div className="absolute top-7 -right-10 bg-gradient-to-b from-yellow-500 to-yellow-700 text-white text-center font-bold text-xs uppercase py-1.5 w-[160px] rotate-45 shadow-[0_4px_10px_rgba(0,0,0,0.4)] 
+                        before:content-[''] before:absolute before:bottom-[-8px] before:border-t-[8px] before:border-t-yellow-800 before:border-l-[8px] before:border-l-transparent before:border-r-[8px] before:border-r-transparent before:left-0
+                        after:content-[''] after:absolute after:bottom-[-8px] after:border-t-[8px] after:border-t-yellow-800 after:border-l-[8px] after:border-l-transparent after:border-r-[8px] after:border-r-transparent after:right-0
+                        translate-x-[-2px] translate-y-[-2px]">
+                        Featured Image
+                        </div>
+                    </div>
           )}
         </div>
 

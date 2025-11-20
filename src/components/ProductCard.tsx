@@ -147,10 +147,11 @@ export default function ProductCard({ productName, productImage, productPrice, _
             <div onClick={() => router.push(`/product/product-detail/${productSlug}`)} className='w-full rounded relative h-60'>
                 <Image src={productImage || '/ryu.gif'} alt='no Image' className='rounded' fill sizes='50vw' />
                 {(productQuantity === 0 || productQuantity === null) && (
-                    <div className="absolute top-0 right-0 w-[120px] h-[120px] overflow-hidden z-10 pointer-events-none">
-                        <div className="absolute top-6 -right-9 bg-gradient-to-b from-red-500 to-red-700 text-white text-center font-bold text-xs uppercase py-1.5 w-[160px] rotate-45 shadow-[0_4px_10px_rgba(0,0,0,0.4)] 
+                    <div className="absolute top-0 right-0 w-[125px] h-[125px] overflow-visible z-10 pointer-events-none">
+                        <div className="absolute top-7 -right-10 bg-gradient-to-b from-red-500 to-red-700 text-white text-center font-bold text-xs uppercase py-1.5 w-[160px] rotate-45 shadow-[0_4px_10px_rgba(0,0,0,0.4)] 
                         before:content-[''] before:absolute before:bottom-[-8px] before:border-t-[8px] before:border-t-red-800 before:border-l-[8px] before:border-l-transparent before:border-r-[8px] before:border-r-transparent before:left-0
-                        after:content-[''] after:absolute after:bottom-[-8px] after:border-t-[8px] after:border-t-red-800 after:border-l-[8px] after:border-l-transparent after:border-r-[8px] after:border-r-transparent after:right-0">
+                        after:content-[''] after:absolute after:bottom-[-8px] after:border-t-[8px] after:border-t-red-800 after:border-l-[8px] after:border-l-transparent after:border-r-[8px] after:border-r-transparent after:right-0
+                        translate-x-[-2px] translate-y-[-2px]">
                         &nbsp;&nbsp;&nbsp;Out of Stock
                         </div>
                     </div>

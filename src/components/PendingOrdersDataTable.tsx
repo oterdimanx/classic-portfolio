@@ -1,15 +1,13 @@
-
 "use Client"
 
 import React, { useEffect, useState } from 'react'
-
 import { useSWRConfig } from "swr"
 import DataTable from 'react-data-table-component';
 import Loading from '@/app/loading';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/Store/store';
 import { useRouter } from 'next/navigation';
-import { old_update_order_status, update_order_status } from '@/Services/Admin/order';
+import { admin_update_order_status, update_order_status } from '@/Services/Admin/order';
 
 
 interface Order {
@@ -92,7 +90,7 @@ export default function PendingOrdersDataTable() {
 
 
   const updateOrderStatus =  async (id: string) => {
-    const res =  await old_update_order_status(id);
+    const res =  await admin_update_order_status(id);
     if(res?.success){
       mutate('gettingAllOrdersForAdmin')
     }else{
@@ -121,18 +119,11 @@ export default function PendingOrdersDataTable() {
     {
       name: 'Action',
       cell: (row: Order) => (
-
         <button onClick={() => updateOrderStatus(row?._id)} className=' w-20 py-2 mx-2 text-xs text-green-600 hover:text-white my-2 hover:bg-green-600 border border-green-600 rounded transition-all duration-700'>Delivered</button>
-
       )
     },
 
   ];
-
-
-
-
-
 
   useEffect(() => {
     if (search === '') {
@@ -145,8 +136,6 @@ export default function PendingOrdersDataTable() {
       }))
     }
   }, [search, orderData])
-
-
 
   return (
     <div className='w-full h-full'>
@@ -164,7 +153,7 @@ export default function PendingOrdersDataTable() {
         persistTableHead
         subHeader
         subHeaderComponent={
-          <input className='w-60 dark:bg-transparent py-2 px-2  outline-none  border-b-2 border-orange-600' type={"search"}
+          <input className='w-60 dark:bg-transparent py-2 px-2 outline-none border-b-2 border-orange-600' type={"search"}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder={"Orders ID"} />

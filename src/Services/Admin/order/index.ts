@@ -17,10 +17,10 @@ export const get_all_orders = async () => {
   }
 }
 
-export const old_update_order_status = async (id : any) => {
+export const admin_update_order_status = async (id : any) => {
   //console.log(id)
   try {
-    const res = await fetch(`/api/Admin/order/old-update-order-status`, {
+    const res = await fetch(`/api/Admin/order/admin-update-order-status`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${Cookies.get('token')}`,
