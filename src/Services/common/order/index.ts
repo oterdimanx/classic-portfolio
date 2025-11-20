@@ -69,7 +69,7 @@ export const get_order_details = async (id: any) => {
   }
 }
 
-export const update_an_order = async  (orderId: any, paypalOrderId: { paypalOrderId: any; }, isPaid: { isPaid: boolean; }) => {
+export const update_an_order = async (orderId: any, paypalOrderId: { paypalOrderId: any; }, isPaid: { isPaid: boolean; }) => {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000';
     const res = await fetch(`${baseUrl}/api/Admin/order/update-order`, {

@@ -3,7 +3,6 @@ import AuthCheck from "@/middleware/AuthCheck";
 import { NextResponse } from "next/server";
 import Order from "@/model/Order";
 import Joi from "joi";
-import Cart from "@/model/Cart";
 
 const createOrderSchema = Joi.object({
     user: Joi.string().required(),
@@ -26,7 +25,11 @@ export async function POST(req: Request) {
             const saveData = await Order.create([data]);
 
             if (saveData && saveData.length > 0) {
-                const deleteData = await Cart.deleteMany({userID: user});
+                /**
+                 * //const deleteData = await Cart.deleteMany({userID: user});
+                 * comment: After creating order, clear the cart items for the user
+                 * if paypal payment is successful only, at this point the order can be created but the cart should not be cleared yet
+                 */
                 return NextResponse.json({ success: true, message: "La commande est validée, merci. Vous pouvez procéder au paiement.", orderid: saveData[0]._id });
             } else {
                 return NextResponse.json({ success: false, message: "Failed to create Order . Please try again!" });

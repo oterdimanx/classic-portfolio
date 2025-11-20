@@ -3,7 +3,7 @@
 import { get_order_details } from '@/Services/common/order'
 import { RootState } from '@/Store/store'
 import Loading from '@/app/loading'
-import Hero from '@/components/Hero'
+import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
 import Cookies from 'js-cookie'
 import Image from 'next/image'
@@ -133,18 +133,18 @@ export default function Page() {
             {
                 loading ? <Loading /> :
                     <div className="w-full h-5/6 dark:text-black overflow-y-auto">
-                        <div className="w-full flex px-2 flex-wrap items-center justify-center">
+                        <div className="w-full flex px-2 py-4 flex-wrap items-center justify-center border-b">
                             {/*Order product Card */}
                             {
                                 orderData?.orderItems.map((item, index) => {
                                     return (
                                         <div key={index} className="md:w-96 m-2 w-52 h-52 bg-gray-300 flex md:flex-row flex-col items-center justify-start">
                                             <div className="relative w-1/2 h-full">
-                                                <Image src={item?.product?.productImage || '/images98.png'} alt="no Image Found" fill />
+                                                <Image src={item?.product?.productImage || '/ryu.gif'} alt="no Image Found" fill />
                                             </div>
                                             <div className="flex  px-2 py-1 flex-col items-start justify-start">
                                                 <h1 className="my-2">{item?.product?.productName}</h1>
-                                                <p className="text-sm my-2 font-semibold">Rs {item?.product?.productPrice}</p>
+                                                <p className="text-sm my-2 font-semibold">&euro; {item?.product?.productPrice}</p>
                                                 <p className="text-sm  my-2">Quantity :  <span className="font-semibold">{item?.qty}</span></p>
 
                                             </div>
@@ -179,31 +179,31 @@ export default function Page() {
                                     <p className="font-semibold">{orderData?.shippingAddress?.country}</p>
                                 </div>
                             </div>
-                            <div className="border m-2 w-96  flex-col flex items-start justify-start py-2 px-4">
+                            <div className="border m-2 w-96 flex-col flex items-start justify-start py-2 px-4">
                                 <h1 className="text-xl font-semibold">Other Details</h1>
                                 <div className="flex py-2 w-full text-sm justify-between">
                                     <p>Items Price</p>
-                                    <p className="font-semibold">Rs {orderData?.itemsPrice}</p>
+                                    <p className="font-semibold">&euro; {orderData?.itemsPrice}</p>
                                 </div>
                                 <div className="flex py-2 w-full text-sm justify-between">
                                     <p>Tax Price</p>
-                                    <p className="font-semibold">Rs {orderData?.taxPrice}</p>
+                                    <p className="font-semibold">&euro; {orderData?.taxPrice}</p>
                                 </div>
                                 <div className="flex py-2 w-full text-sm justify-between">
                                     <p>Total Price</p>
-                                    <p className="font-semibold">Rs {orderData?.totalPrice}</p>
+                                    <p className="font-semibold">&euro; {orderData?.totalPrice}</p>
                                 </div>
                                 <div className="flex py-2 w-full text-sm justify-between">
                                     <p>Is Paid</p>
-                                    <p className="font-semibold">{orderData?.isPaid ? "Done" : "Pending"}</p>
+                                    <p className="font-semibold">{orderData?.isPaid ? "Payé" : "En attente de paiement"}</p>
                                 </div>
                             </div>
 
                         </div>
                     </div>
             }
-            
         </div>
+        <Footer />
         </>
     )
 }

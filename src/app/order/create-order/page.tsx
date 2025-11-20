@@ -20,6 +20,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Footer from '@/components/Footer'
 import _ from 'lodash'
 import { get_all_countries } from '@/Services/Admin/country'
+import { update_a_product } from '@/Services/Admin/product'
 
 type Inputs = {
     fullName: string,
@@ -276,7 +277,10 @@ export default function Page() {
                                 {errors.country && <span className="text-red-500 text-xs mt-2">This field is required</span>}
                             </div>
 
-                            <button className="btn btn-block mt-12 relative">Commander !</button>
+                                <button type="submit" className="btn btn-block mt-12 relative" >
+                                    Commander !
+                                </button>
+
                             {showPaypal && orderId && (
                                 <PayPalButtons
                                     createOrder={
@@ -325,9 +329,7 @@ export default function Page() {
                                     }
 
                                     try {
-                                        //const details = await actions.order.capture();
-                                        
-                                        // 2. Then send to your backend to verify and update
+
                                         const res = await fetch('/api/paypal/create-paypal-order', {
                                         method: 'PUT',
                                         headers: { 
@@ -348,7 +350,42 @@ export default function Page() {
                                         if (result.success) {
 
                                             //ici je récupère l'orderID paypal et je mets à jour la commande avec l'orderID correspondant
+                                            // le panier est vidé dans update_an_order quand isPaid passe à true
                                             const res =  await update_an_order( {orderId: orderId }, {paypalOrderId: data.orderID }, {isPaid: true });
+
+                                            // ensuite on met à jour les quuantités des produits achetés dans la bdd en faisant une boucle sur les items de la commande
+                                            // et on décrémente la quantité en stock dans la bdd
+
+
+                                            /*
+                                                const updatedData: Inputs = {
+                                                  _id: id,
+                                                  quantity: data.quantity !== prodData?.productQuantity ? data.quantity : prodData?.productQuantity,
+                                                };
+                                            
+                                                const result = await update_a_product(updatedData)
+*/
+
+
+                                            /*
+                                            for (const item of cartData as Data[]) {
+                                                const prodRes = await fetch(`/api/Admin/product/update-product-quantity`, {
+                                                    method: 'PUT',
+                                                    headers: {
+                                                        'Content-Type': 'application/json',
+                                                        'Authorization': `Bearer ${Cookies.get('token')}`
+                                                    },
+                                                    body: JSON.stringify({
+                                                        productId: item?.productID?._id,
+                                                        quantity: item?.quantity
+                                                    }),
+                                                });
+                                                const prodData = await prodRes.json();
+                                                if (!prodData.success) {
+                                                    console.error(`Failed to update quantity for product ${item?.productID?._id}:`, prodData.message);
+                                                }
+                                            }  
+                                                */
 
                                             // Payment completed successfully
                                             console.log('Payment completed!');
