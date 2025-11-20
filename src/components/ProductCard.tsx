@@ -40,6 +40,13 @@ export default function ProductCard({ productName, productImage, productPrice, _
     const [animate, setAnimate] = useState(false)
 
     const AddToCart = async () => {
+        if(!user){
+            toast.warning("Veuillez vous connecter pour ajouter des articles au panier", {
+              position: 'bottom-center',
+              className: 'custom-warning-shadow'
+            })
+            return
+        }
         const finalData = { productID: _id, userID: user?._id }
         const res = await add_to_cart(finalData);
         if (res?.success) {

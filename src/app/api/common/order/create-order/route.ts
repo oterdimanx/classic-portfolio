@@ -5,11 +5,9 @@ import Order from "@/model/Order";
 import Joi from "joi";
 import Cart from "@/model/Cart";
 
-
 const createOrderSchema = Joi.object({
     user: Joi.string().required(),
 })
-
 
 export const dynamic  = 'force-dynamic'
 
@@ -17,28 +15,19 @@ export async function POST(req: Request) {
     try {
         await connectDB();
         const isAuthenticated = await AuthCheck(req);
-        
+
         if (isAuthenticated) {
             const data = await req.json();
             //console.log(data)
-            
-
             const { user } = data;
-
-
-
             const { error } = createOrderSchema.validate({ user });
 
             if (error) return NextResponse.json({ success: false, message: error.details[0].message.replace(/['"]+/g, '') });
+            const saveData = await Order.create([data]);
 
-
-            const saveData = await Order.create(data);
-
-            
-
-            if (saveData) {
+            if (saveData && saveData.length > 0) {
                 const deleteData = await Cart.deleteMany({userID: user});
-                return NextResponse.json({ success: true, message: "Products Are on The way !!" });
+                return NextResponse.json({ success: true, message: "La commande est validée, merci. Vous pouvez procéder au paiement.", orderid: saveData[0]._id });
             } else {
                 return NextResponse.json({ success: false, message: "Failed to create Order . Please try again!" });
             }

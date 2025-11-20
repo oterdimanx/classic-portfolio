@@ -7,7 +7,7 @@ import { RootState } from '@/Store/store'
 import Loading from '@/app/loading'
 
 type ProductData = {
-    productQuantity: number
+    productQuantity: number,
     productName: string,
     productImage: string,
     productSlug: string,

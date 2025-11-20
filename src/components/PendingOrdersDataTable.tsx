@@ -9,7 +9,7 @@ import Loading from '@/app/loading';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/Store/store';
 import { useRouter } from 'next/navigation';
-import { update_order_status } from '@/Services/Admin/order';
+import { old_update_order_status, update_order_status } from '@/Services/Admin/order';
 
 
 interface Order {
@@ -92,7 +92,7 @@ export default function PendingOrdersDataTable() {
 
 
   const updateOrderStatus =  async (id: string) => {
-    const res =  await update_order_status(id);
+    const res =  await old_update_order_status(id);
     if(res?.success){
       mutate('gettingAllOrdersForAdmin')
     }else{

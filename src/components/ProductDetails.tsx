@@ -46,75 +46,83 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   });
 
   const AddToCart = async () => {
-        const finalData = { productID: product._id, userID: user?._id }
-        const res = await add_to_cart(finalData);
-        if (res?.success) {
-            console.log(res?.message);
-            toast.warning(res?.message)
-        } else {
-            toast.warning('Le produit est déjà dans votre panier')
-            console.log('An error occured (AddToCart) : ' + res?.message)
-        }
+    if(!user){
+        toast.warning("Veuillez vous connecter pour ajouter des articles au panier", {
+          position: 'bottom-center',
+          className: 'custom-warning-shadow'
+        })
+        return
     }
+    const finalData = { productID: product._id, userID: user?._id }
+    const res = await add_to_cart(finalData);
+    if (res?.success) {
+        console.log(res?.message)
+        toast("Le produit a été ajouté au panier", {
+          position: 'bottom-center',
+          className: 'custom-warning-shadow'
+        })
+    } else {
+        toast.warning('Le produit est déjà dans votre panier')
+        console.log('An error occured (AddToCart) : ' + res?.message)
+    }
+  }
 
-    const AddToBookmark  =  async () => {
-        const bmarkData = await get_all_bookmark_items(user?._id)
+  const AddToBookmark  =  async () => {
+      const bmarkData = await get_all_bookmark_items(user?._id)
+      if (bmarkData?.data?.length > 0){
+        /* au moins un bookmark existe déjà
+            on doit vérifier tous les objets retournés pour comparer avec l'id 
+            du produit qui vient d'être bookmarké */
 
-        if (bmarkData?.data?.length > 0){
-            /* au moins un bookmark existe déjà
-               on doit vérifier tous les objets retournés pour comparer avec l'id 
-               du produit qui vient d'être bookmarké */
+        bmarkData?.data.map((item: { productID: { _id: any; }; }) => {
+            const book = [...arrBook,item.productID?._id]
+            SetArrBook(book)
+        })
 
-            bmarkData?.data.map((item: { productID: { _id: any; }; }) => {
-                const book = [...arrBook,item.productID?._id]
-                SetArrBook(book)
+        if(arrBook.includes(product?._id)){
+            //console.log('id retrouve dans la liste ' + product?._id)
+            toast.warning("Le bookmark existe déjà dans vos favoris", {
+              position: 'bottom-center',
+              className: 'custom-warning-shadow'
             })
-
-            if(arrBook.includes(product?._id)){
-                //console.log('id retrouve dans la liste ' + product?._id)
-
-                toast.warning("Le bookmark existe déjà dans vos favoris", {
-                  position: 'bottom-center',
-                  className: 'custom-warning-shadow'
-                })
-
-                //notify("Le bookmark existe déjà dans vos favoris")
-
-            }else{
-                const finalData = { productID: product?._id, userID: user?._id }
-                const res = await bookmark_product(finalData);
-                if (res?.success) {
-                    //console.log('bookmark added')
-                    toast("Le bookmark a été ajouté aux favoris", {
-                      position: 'bottom-center',
-                      className: 'custom-warning-shadow'
-                    })
-                    /* le bookmark a bien été ajouté */
-                } else {
-                    console.log('An error occured (AddToBookmark) : ' + res?.message)
-                }
-            }
-
-        } else {
-            /* Il n'y a pas de bookmarks dans la liste, on peut ajouter */
+        }else{
             const finalData = { productID: product?._id, userID: user?._id }
             const res = await bookmark_product(finalData);
             if (res?.success) {
-              //console.log('bookmark added')
-              toast("Le bookmark a été ajouté aux favoris", {
-                position: 'bottom-center',
-                className: 'custom-warning-shadow'
-              })
-                // le bookmark a bien été ajouté
+                //console.log('bookmark added')
+                toast("Le bookmark a été ajouté aux favoris", {
+                  position: 'bottom-center',
+                  className: 'custom-warning-shadow'
+                })
+                /* le bookmark a bien été ajouté */
             } else {
                 console.log('An error occured (AddToBookmark) : ' + res?.message)
-                toast("Créez un compte et connectez-vous pour gérer vos favoris", {
-                    position: 'bottom-center',
-                    className: 'custom-warning-shadow toast-message'
-                })
+                toast.warning("Le bookmark existe déjà dans vos favoris", {
+                  position: 'bottom-center',
+                  className: 'custom-warning-shadow'
+              })
             }
         }
-    }
+      } else {
+          /* Il n'y a pas de bookmarks dans la liste, on peut ajouter */
+          const finalData = { productID: product?._id, userID: user?._id }
+          const res = await bookmark_product(finalData);
+          if (res?.success) {
+            //console.log('bookmark added')
+            toast("Le bookmark a été ajouté aux favoris", {
+              position: 'bottom-center',
+              className: 'custom-warning-shadow'
+            })
+              // le bookmark a bien été ajouté
+          } else {
+              console.log('An error occured (AddToBookmark) : ' + res?.message)
+              toast("Créez un compte et connectez-vous pour gérer vos favoris", {
+                  position: 'bottom-center',
+                  className: 'custom-warning-shadow toast-message'
+              })
+          }
+      }
+  }
 
   return (
 <div className="flex flex-col lg:flex-row gap-6 bg-white text-black p-6 max-w-7xl mx-auto font-[Poppin]">
