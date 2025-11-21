@@ -58,6 +58,10 @@ export default function ForgetPassword() {
     }
   }
 
+  const buttonStyles = {
+      primary: "btn w-full bg-gray-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-all duration-200 shadow-sm hover:shadow-md",
+  }
+
   return (
     <>
     <div>
@@ -65,7 +69,7 @@ export default function ForgetPassword() {
     </div>
     <div className="w-full bg-gray-50 text-black font-[Poppin]">
         <div>
-            <h1 className="py-2 dark:text-black">Oliver's Classic PortFolio : Changez de mot de passe</h1>
+            <h1 className="py-2 dark:text-black items-center text-center justify-center">Oliver's Classic PortFolio : Changez de mot de passe</h1>
         </div>
     </div>
       <section className="bg-gray-50 font-[Poppin] text-center">
@@ -108,7 +112,7 @@ export default function ForgetPassword() {
                     wrapperClass=""
                     visible={true}
                   />
-                </button> : <button type="submit" className="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">Reset</button>
+                </button> : <button type="submit" className={buttonStyles.primary}>Reset</button>
               }
             </form>
           </div>

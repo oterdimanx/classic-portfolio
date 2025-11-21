@@ -71,6 +71,10 @@ export default function Login() {
         }
     }, [Router])
 
+    const buttonStyles = {
+        primary: "btn w-full bg-gray-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-all duration-200 shadow-sm hover:shadow-md",
+    }
+    
     return (
         <>
         <div>
@@ -78,7 +82,7 @@ export default function Login() {
         </div>
         <div className="w-full bg-gray-50 text-black font-[Poppin]">
             <div>
-                <h1 className="py-2 dark:text-black">Identifiez vous pour gérer vos favoris ou pour m'acheter une image :)</h1>
+                <h1 className="py-2 dark:text-black items-center text-center justify-center">Identifiez vous pour gérer vos favoris ou pour m'acheter une image :)</h1>
             </div>
         </div>
         <div className="w-full bg-gray-50 text-black font-[Poppin]">
@@ -128,7 +132,7 @@ export default function Login() {
                                         wrapperClass=""
                                         visible={true}
                                     />
-                                    </button> : <button type="submit" className="w-full text-white bg-orange-600 da hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">Sign in</button>
+                                    </button> : <button type="submit" className={buttonStyles.primary}>Sign in</button>
                             }
                             
                             <p className="text-sm text-black ">

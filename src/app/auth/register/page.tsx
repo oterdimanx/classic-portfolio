@@ -55,6 +55,11 @@ export default function  Register (){
     }
   }
 
+  const buttonStyles = {
+      primary: "btn w-full bg-gray-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-all duration-200 shadow-sm hover:shadow-md",
+      secondary: "btn w-full bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-yellow-900 transition-all duration-200 shadow-sm hover:shadow-md",
+  }
+
   return (
     <>
     <div>
@@ -62,7 +67,7 @@ export default function  Register (){
     </div>
     <div className="w-full bg-gray-50 text-black font-[Poppin]">
         <div>
-            <h1 className="py-2 dark:text-black">Oliver's Classic PortFolio : Inscrivez vous ici</h1>
+            <h1 className="py-2 dark:text-black items-center text-center justify-center">Oliver's Classic PortFolio : Inscrivez vous ici</h1>
         </div>
     </div>
     <div className="w-full bg-gray-50 font-[Poppin]">
@@ -107,10 +112,10 @@ export default function  Register (){
                           wrapperClass=""
                           visible={true}
                       />
-                      </button> : <button type="submit" className="w-full text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign up</button>
+                      </button> : <button type="submit" className={buttonStyles.secondary}>Sign up</button>
               }
               <p className="text-sm  text-gray-500 ">
-                Vous avez déjà un compte? <Link href="/auth/login" className="font-medium text-orange-600 hover:underline ">Authentification</Link>
+                Vous avez déjà un compte? <Link href="/auth/login" className={buttonStyles.primary}>Authentification</Link>
               </p>
             </form>
           </div>
