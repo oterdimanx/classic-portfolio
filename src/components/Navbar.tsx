@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { RootState } from '@/Store/store';
 import { useSelector } from 'react-redux';
-import { FaCartArrowDown } from 'react-icons/fa';
+import { FaCartArrowDown, FaLock, FaLockOpen } from 'react-icons/fa';
 import { CiDeliveryTruck } from 'react-icons/ci'
 import { MdFavorite } from 'react-icons/md';
 import CartOverlay from './CartOverlay';
@@ -57,6 +57,16 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
         return () => window.removeEventListener('keydown', handleEsc);
     }, []);
 
+    const buttonStyles = {
+        primary: "bg-gray-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-all duration-200 shadow-sm hover:shadow-md",
+        secondaryGray: "border border-gray-300 bg-white text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-50 transition-all duration-200",
+        secondaryGreen: "btn mx-2 border border-gray-300 bg-white text-gray-700 px-8 py-3 rounded-lg font-large hover:bg-green-50 transition-all duration-200",
+        hpScrolled: "btn text-black mx-2 bg-transparent border border-white-300 px-8 py-3 rounded-lg font-large hover:bg-green-50 hover:text-black transition-all duration-200",
+        hpTop: "btn text-white mx-2 bg-transparent border border-gray-300 px-8 py-3 rounded-lg font-large hover:bg-green-50 hover:text-black transition-all duration-200",
+        logout: "btn btn-logout text-white mx-2 px-8 py-3 border border-red bg-transparent rounded-lg font-large hover:bg-green-50 hover:text-black",
+        login: "btn btn-login text-white mx-2 px-8 py-3 border border-red bg-transparent rounded-lg font-large hover:bg-green-50 hover:text-black",
+    }
+
     return (
         <div className={`navbar ${!Scrolled && isHomePage ? "" : "bg-white/95"} mainNav top-0 left-0 pb-0 pt-0 ${isHomePage ? "fixed z-10" : "border-b-2 border-b-red-900"}`} style={{ '--navbar-padding': '0' } as React.CSSProperties}>
             <div className={`flex-none block ${!isHomePage ? "border-r-2 border-r-red-900 h-[130px] top-menu-image-container" : "h-[130px]"}`}>
@@ -64,34 +74,43 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                     <label className="text-white">
                     {
                         isHomePage ? 
-                        <img src={'/turtle-transparent.png'} alt="turtle.png" width="250" height="150" className="md:block" onClick={() => router.push("/")} /> :
-                        <img src={'/turtle.png'} alt="turtle.png" width="250" height="250" className="md:block" onClick={() => router.push("/")} />
+                        <img src={'/turtle-transparent.png'} alt="turtle.png" width="250" height="150" className="md:block cursor-pointer" onClick={() => router.push("/")} /> :
+                        <img src={'/turtle.png'} alt="turtle.png" width="250" height="250" className="md:block cursor-pointer" onClick={() => router.push("/")} />
                     }
                     </label>
                 </div>
             </div>
-            <div className={`secondaryNav bg-white-50 ${!isHomePage ? "px-0 relative -tracking-[0.06em] -left-[2px] -top-[0px]" : "px-0 relative -tracking-[0.06em] -left-[2px] -top-[0px]"}`}>
+            <div className={`flex flex-col md:flex-row md:space-x-6 secondaryNav bg-white-50 ${!isHomePage ? "px-0 relative -tracking-[0.06em] -left-[2px] -top-[0px]" : "px-0 relative -tracking-[0.06em] -left-[2px] -top-[0px]"}`}>
                 <ul className="secondaryNavHeader">
                     <li>
-                        <div className="text-sm m-w-full overflow-x-auto">
+                        <div className="text-sm m-w-full overflow-x-auto overflow-y-auto">
                             <ul className={`dark:text-black text-xl flex subpixel-antialiased ${!isHomePage ? " text-red-400" : Scrolled ?  " text-black" :  " text-white"}`}> 
                                 <li className="pl-10 whitespace-nowrap">
-                                    <Link className={isHomePage ? Scrolled ?  " btn text-black mx-2 bg-transparent hover:text-white" :  " btn text-white mx-2 bg-transparent" : "btn text-white mx-2"} href={"/PortFolio-All-Images"}>Voir toutes les images</Link>
+                                    <Link className={isHomePage ? Scrolled ?  buttonStyles.hpScrolled :  buttonStyles.hpTop : buttonStyles.secondaryGreen} href={"/PortFolio-All-Images"}>Toutes les images</Link>
                                 </li>
                                 <li className="pl-10 whitespace-nowrap">
-                                    <Link className={isHomePage ? Scrolled ?  " btn text-black mx-2 bg-transparent hover:text-white" :  " btn text-white mx-2 bg-transparent" : "btn text-white "} href={"/Faq-All-You-Need-To-Know"}>Faq</Link>
+                                    <Link className={isHomePage ? Scrolled ?  buttonStyles.hpScrolled :  buttonStyles.hpTop : buttonStyles.secondaryGreen} href={"/Faq-All-You-Need-To-Know"}>Faq</Link>
                                 </li>                           
                             </ul>
                         </div>
                     </li>
                 </ul>
             </div>
-            <div className="navbar-end m-auto">
+            <div className="navbar-end m-auto w-[50%] ml-10">
                 <div className="flex-none">
                     {
                         user ?
-                        <div className="flex items-center justify-center -top-[0px] relative">
-                         <button onClick={handleLogout} className={isHomePage ? Scrolled ?  " btn text-black mx-2 bg-transparent hover:text-white" :  " btn text-white mx-2 bg-transparent" : "btn text-white mx-2"} aria-label="Logout">logout</button>
+                        <div className="flex">
+                         <button onClick={handleLogout} 
+                         className={
+                            isHomePage ? 
+                            Scrolled ? "focus:outline-none btn btn-circle mx-2 bg-black" : "focus:outline-none btn btn-circle mx-2 bg-transparent" 
+                            : 
+                            isCartPage ? "focus:outline-none btn btn-circle mx-2 opacity-50 cursor-not-allowed" : "focus:outline-none btn btn-circle mx-2"
+                            } 
+                            aria-label="Logout">
+                            <FaLockOpen className="text-white text-xl" />
+                        </button>
                          <button onClick={()=> {!isCartOpened && !isCartPage && setIsCartOpened(true)}} 
                          className={
                             isHomePage ? 
@@ -117,7 +136,15 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                          
                         </div>
                             :
-                            <button onClick={() => router.push('/auth/login')} className="btn text-white mx-2 btn-login relative" aria-label="Login">Login</button>
+                            <button onClick={() => router.push('/auth/login')} 
+                            className={
+                            isHomePage ? 
+                            Scrolled ? "focus:outline-none btn btn-circle mx-2 bg-black" : "focus:outline-none btn btn-circle mx-2 bg-transparent" 
+                            : "focus:outline-none btn btn-circle mx-2"
+                        } 
+                                aria-label="Login">
+                                    <FaLock className="text-white text-xl" />
+                            </button>
                     }
                     {/* Overlay Panel */}
                     {isCartOpened && (

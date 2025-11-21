@@ -11,13 +11,7 @@ export const metadata: Metadata = {
   description: 'Firebase Is My Images Back-End. Classic Portfolio Is Your Front-End. Discover Our FAQ Section evolution of the app, Troubleshooting, and all the services we can offer.',
   authors: [{ name: "Terdiman Olivier", url: 'https://olivers-portfolio.terdiman.fr' }],
 }
-/*
-export const metadata: Metadata = {
-  title: 'Oliver\'s PortFolio - FAQ - Frequently Asked Questions',
-  description: 'Trouvez toutes les réponses à vos questions concernant ma boutique portfolio, et bien plus d\'informations encore.',
-  keywords: 'FAQ, help, support, shipping, returns, payments',
-};
-*/
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fr">

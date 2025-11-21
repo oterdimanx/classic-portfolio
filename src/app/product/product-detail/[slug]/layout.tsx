@@ -1,26 +1,28 @@
-// src/app/product/product-detail/[slug]/layout.tsx
 import type { Metadata, ResolvingMetadata } from 'next';
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export async function generateMetadata(
-  { params }: Props,
+  { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const slug = params.slug;
+  // AWAIT the params first
+  const { slug } = await params;
+  const searchParamsObj = await searchParams;
   
   try {
     // Use full URL for server-side fetching
     const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000';
     const res = await fetch(`${baseUrl}/api/common/product/get-product-by-slug?slug=${slug}`, {
       method: 'GET',
-      cache: 'force-cache' // Cache for better performance
+      cache: 'force-cache'
     });
 
     if (!res.ok) {
-      throw new Error('Product not found');
+      throw new Error('Image Product not found');
     }
 
     const response = await res.json();
@@ -28,8 +30,8 @@ export async function generateMetadata(
 
     if (!product) {
       return {
-        title: 'Product Not Found',
-        description: 'The product you are looking for does not exist.',
+        title: 'Image Product Not Found',
+        description: 'The image product you are looking for does not exist.',
       };
     }
 
@@ -58,7 +60,7 @@ export async function generateMetadata(
     console.error('Error generating metadata:', error);
     return {
       title: 'Product',
-      description: 'Product details page',
+      description: 'Image Product details page',
     };
   }
 }

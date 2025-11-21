@@ -127,6 +127,13 @@ body {
   animation: fadeIn 2s ease forwards;
 }
 
+@media (max-width: 650px) {
+  .navbar-end {
+    position: fixed;
+    justify-content: right;
+  }
+}
+
 @media (max-width: 620px) {
 
   .mainNav {
@@ -158,19 +165,18 @@ body {
   .secondaryNav {
     position: relative;
     top: -25px;
-    left: -33px
-  }
-
-  .navbar-end {
-    justify-content: center;
-    position: relative;
-    top: 30px;
-    left: -223px
+    left: -33px;
   }
 
   .navbar img {
     min-height: 130px;
     max-width: 250px;
+  }
+
+  .navbar-end {
+    position: relative;
+    right: 435px;
+    top: 40px;
   }
 
 }
