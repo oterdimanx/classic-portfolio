@@ -69,7 +69,7 @@ export default function Page() {
                             price: prodData?.productPrice || 0,
                             inStock: prodData?.productQuantity ?? prodData?.productQuantity === 0 ? true : false,
                             isFeatured: prodData?.productFeatured ? true : false,
-                            sizeGuideUrl: "/logo_zyy-05-black.png",
+                            sizeGuideUrl: "/xxx.png",
                             _id: prodData?._id || 'unk_zyy'
                         }} />
                     </>
