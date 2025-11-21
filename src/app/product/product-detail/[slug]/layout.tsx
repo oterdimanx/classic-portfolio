@@ -1,17 +1,13 @@
+// src/app/product/product-detail/[slug]/layout.tsx
 import type { Metadata, ResolvingMetadata } from 'next';
 
-type Props = {
-  params: Promise<{ slug: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-};
-
+// Remove the custom Props type and use inline types instead
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  { params }: { params: Promise<{ slug: string }> }, // Use inline type
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   // AWAIT the params first
   const { slug } = await params;
-  const searchParamsObj = await searchParams;
   
   try {
     // Use full URL for server-side fetching
@@ -22,7 +18,7 @@ export async function generateMetadata(
     });
 
     if (!res.ok) {
-      throw new Error('Image Product not found');
+      throw new Error('Product not found');
     }
 
     const response = await res.json();
@@ -30,8 +26,8 @@ export async function generateMetadata(
 
     if (!product) {
       return {
-        title: 'Image Product Not Found',
-        description: 'The image product you are looking for does not exist.',
+        title: 'Product Not Found',
+        description: 'The product you are looking for does not exist.',
       };
     }
 
@@ -39,8 +35,8 @@ export async function generateMetadata(
     const previousImages = (await parent).openGraph?.images || [];
 
     return {
-      title: `${product.productName} | Oliver's Classic Portfolio`,
-      description: product.productDescription || `Achetez ${product.productName} dans notre boutique.`,
+      title: `${product.productName} | Your Store Name`,
+      description: product.productDescription || `Buy ${product.productName} at our store.`,
       openGraph: {
         title: product.name,
         description: product.metaDescription || product.description || `Achetez ${product.name} dans notre boutique.`,
@@ -52,7 +48,7 @@ export async function generateMetadata(
       twitter: {
         card: 'summary_large_image',
         title: product.productName,
-        description: product.productDescription || `Achetez ${product.productName} dans notre boutique.`,
+        description: product.productDescription || `Buy ${product.productName} at our store.`,
         images: product.productImage ? [product.productImage] : [],
       },
     };
@@ -60,7 +56,7 @@ export async function generateMetadata(
     console.error('Error generating metadata:', error);
     return {
       title: 'Product',
-      description: 'Image Product details page',
+      description: 'Product details page',
     };
   }
 }
