@@ -29,7 +29,6 @@ export default function Page() {
               <>
                 <div className="bg-white px-2">
                     <div>
-                        <h1 className="text-2xl py-2 dark:text-black">Lookbook</h1>
                         {
                             loading ? <Loading /> :
                             <>

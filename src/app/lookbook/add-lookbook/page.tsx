@@ -42,7 +42,7 @@ const uploadImages = async (file: File, randString : string) => {
 }
 
 const maxSize = (value: File) => {
-    const fileSize = value.size / 1024 / 1024;
+    const fileSize = value.size / 61440 / 61440;
     return fileSize < 1 ? false : true
 }
 

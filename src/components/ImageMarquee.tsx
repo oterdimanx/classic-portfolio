@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 
 interface ImageMarqueeProps {
@@ -9,6 +10,7 @@ const ImageMarquee = ({ urls }: ImageMarqueeProps) => {
   const [scrollY, setScrollY] = useState(0);
   const totalHeight = useRef(0);
   const [isPageScrollAllowed, setIsPageScrollAllowed] = useState(false);
+
 
   // Prevent default scroll behavior for the images, but allow it once the user reaches the end
   const handleScroll = (e: React.WheelEvent) => {
@@ -73,24 +75,61 @@ const ImageMarquee = ({ urls }: ImageMarqueeProps) => {
     return <div className="w-full h-96">Chargement en cours</div>;
   }
 
+  const isVideoFile = (url: string): boolean => {
+    const videoRegex = /\.(mp4|webm|ogg|mov|avi|wmv|flv|mkv|3gp|m4v)(?:-[^?&#]*)?(?=[?&#]|$)/i;
+    return videoRegex.test(url);
+  };
+
   return (
     urls.length == 0 ? <div className="w-full h-96">Chargement en cours</div> :
     <>
     <div
       ref={containerRef}
-      className="relative w-full h-screen overflow-hidden bg-black"
+      className="relative w-full h-screen bg-black"
       onWheel={handleScroll} // Handle scroll event only for images
     >
       {/* First image - background image */}
-      <div
-        className="absolute w-full h-screen"
-        style={{
-          backgroundImage: `url(${urls[0]})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)", // Added shadow for depth
-        }}
-      ></div>
+      { isVideoFile(urls[0]) ?
+        <section className="relative h-screen w-full">
+        {/* Video Background */}
+        <div className="absolute inset-0 w-full h-full">
+            <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+            poster="/ryu.gif" // Optional: loading image
+            >
+            <source src={urls[0]} type="video/mp4" />
+            <source src="/hero-background.webm" type="video/webm" /> {/* Better compression */}
+            </video>
+            {/* Optional overlay for better text readability */}
+            <div className="absolute inset-0 bg-black/30"></div>
+        </div>
+        
+        {/* Content */}
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
+            <h1 className="text-5xl md:text-7xl font-bold mb-4">DomeLovers</h1>
+            <p className="text-xl md:text-2xl mb-8">skateboarding is not a crime</p>
+            <button className="btn mx-2 border border-gray-300 bg-white text-gray-700 px-8 py-3 rounded-lg hover:bg-green-50 transition-all duration-200 font-semibold transition-colors">
+                <Link href={"/"}>Home</Link>
+            </button>
+        </div>
+        </section>
+        :
+        <div
+          className="absolute w-full h-screen"
+          style={{
+            backgroundImage: `url(${urls[0]})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)", // Added shadow for depth
+          }}
+          onClick={() => {isVideoFile(urls[0])}}
+        ></div>
+      }
+
 
       {/* Images that will scroll */}
       <div

@@ -131,8 +131,11 @@ body {
   .navbar-end {
     display:inline-flexbox;
     position: fixed;
-    top: 95px;
-    left: -10px;
+    top: 100px;
+    left: 30px;
+  }
+  .mainNav{
+    height: 150px;
   }
 }
 
@@ -144,15 +147,21 @@ body {
   .card {
     max-width: 270px;
   }
-  .product-details-text-container {
-    margin-left: 0px;
-  }
 }
 
 @media (max-width: 833px) {
   .navbar img {
     min-height: 130px;
     max-width: 250px;
+  }
+  .product-details-text-container {
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 1005px) {
+  .product-details-text-container {
+    margin-left: 10px;
   }
 }
 

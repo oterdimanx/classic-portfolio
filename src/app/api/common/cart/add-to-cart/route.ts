@@ -35,7 +35,7 @@ export async function POST(req: Request) {
             const saveData = await Cart.create(data);
 
             if (saveData) {
-                return NextResponse.json({ success: true, message: "Product added to Cart!" });
+                return NextResponse.json({ success: true, message: "Le produit a été ajouté au panier!" });
             } else {
                 return NextResponse.json({ success: false, message: "Failed to add product to cart. Please try again!" });
             }

@@ -12,6 +12,7 @@ import Link from 'next/link'
 import { get_all_products } from '@/Services/Admin/product'
 import { setCategoryData, setCatLoading, setProdLoading, setProductData } from '@/utils/AdminSlice'
 import { get_all_categories } from '@/Services/Admin/category'
+import router from 'next/router'
 
 type ProductData = {
     productName: string,
@@ -37,7 +38,12 @@ export default function Shop() {
   const [loading, setLoading] = useState(true)
   const columnStyles = {
       primary: "border-r-2 border-r-red-900 flex-initial w-[252px]",
-      none: "flex-initial w-[200px]",
+      none: "flex-initial w-[110px]",
+  }
+  const buttonStyles = {
+      primary: "bg-gray-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-all duration-200 shadow-sm hover:shadow-md",
+      secondaryGray: "btn font-semibold mt-2 border border-gray-300 bg-white text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-green-50 transition-all duration-200",
+      secondaryGreen: "btn mx-2 border border-gray-300 bg-white text-gray-700 px-8 py-3 rounded-lg font-large hover:bg-green-50 transition-all duration-200 w-full",
   }
 
   useEffect(() => {
@@ -83,33 +89,28 @@ export default function Shop() {
           <>
             <div className="flex h-full bg-white/95 text-black">
             <div className={columnStyles.none}>
-              <p className="mt-3 pt-8 pb-1 pl-9 pr-8 flex-initial text-xl uppercase">Categories</p>
-              <ul className="pl-9">
-                <li className="rounded-lg cursor-pointer pt-2 w-[80%] relative li-carrousel-element">
-                      <span className="absolute top-0 left-0 mt-1 ml-1 h-full w-full rounded bg-black"></span>
-                      <span className="fold-bold relative inline-block h-full w-full rounded border-2 border-black bg-white px-3 py-1 text-base font-bold text-black transition duration-100 hover:bg-yellow-400 hover:text-gray-900">
-                        <Link href={"/PortFolio-All-Images"} onClick={()=>SetCategoryId('all')}>ALL</Link>
-                      </span>
-                  </li>
+              <ul className="pl-2 pt-6">
                 {
                     <>
                         {
-                            catData?.length < 1 ? <h1 className="text-2xl font-semibold text-white bg-black text-white px-6 py-3 rounded-lg shadow-md border border-red-400 hover:bg-red-600 hover:text-white transition-colors cursor-pointer">No Categories</h1> :
-                            catData?.map((item) => {
-                                return <li className="rounded-lg cursor-pointer pt-2 w-[80%] relative" key={'li-' + ii++}>
-                                    <span className="absolute top-0 left-0 mt-1 ml-1 h-full w-full rounded bg-black"></span>
-                                    <span className="fold-bold relative inline-block h-full w-full rounded border-2 border-black bg-white px-3 py-1 text-base font-bold text-black transition duration-100 hover:bg-yellow-400 hover:text-gray-900">
-                                      <Link 
-                                        href={"/PortFolio-All-Images"}
-                                        onClick={()=>{
-                                            SetCategoryId(item?._id)
-                                        }}
-                                        key={ii++}
-                                    >{item?.categoryName}</Link>
-                                  </span>
-                                </li>
-                            })
+                          catData?.length < 1 ? <h1 className="text-2xl font-semibold text-white bg-black text-white px-6 py-3 rounded-lg shadow-md border border-red-400 hover:bg-red-600 hover:text-white transition-colors cursor-pointer">No Categories</h1> :
+                          catData?.map((item) => {
+                              return <li className="rounded-lg cursor-pointer pt-2 w-[80%] relative" key={'li-' + ii++}>
+                                      <button className={buttonStyles.secondaryGreen}>
+                                        <Link 
+                                          href={"/PortFolio-All-Images"}
+                                          onClick={()=>{
+                                              SetCategoryId(item?._id)
+                                          }}
+                                          key={ii++}
+                                      >{item?.categoryName}</Link>
+                                      </button>
+                                    </li>
+                          })
                         }
+                        <button className={buttonStyles.secondaryGray}>
+                          <Link href={"/Skateboarding-Is-Not-A-Crime"}>Skate</Link>
+                        </button>
                     </>
                 }
               </ul>
