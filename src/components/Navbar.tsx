@@ -68,27 +68,30 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
     }
 
     return (
-        <div className={`navbar ${!Scrolled && isHomePage ? "" : "bg-white/95"} mainNav top-0 left-0 pb-0 pt-0 ${isHomePage ? "fixed z-10" : "border-b-2 border-b-red-900"}`} style={{ '--navbar-padding': '0' } as React.CSSProperties}>
-            <div className={`flex-none block ${!isHomePage ? "border-r-2 border-r-red-900 h-[130px] top-menu-image-container" : "h-[130px]"}`}>
+        <div className={`navbar ${!Scrolled && isHomePage ? "" : "bg-white/95"} mainNav top-0 left-0 pb-0 pt-0 ${isHomePage ? "fixed z-10" : ""}`} style={{ '--navbar-padding': '0' } as React.CSSProperties}>
+            <div className={`flex-none block ${!isHomePage ? "h-[130px] top-menu-image-container" : "h-[130px]"}`}>
                 <div className="dropdown hp-img-container">
                     <label className="text-white">
-                    {
+                    {/*
                         isHomePage ? 
                         <img src={'/turtle-transparent.png'} alt="turtle.png" width="250" height="150" className="md:block cursor-pointer" onClick={() => router.push("/")} /> :
                         <img src={'/turtle.png'} alt="turtle.png" width="250" height="250" className="md:block cursor-pointer" onClick={() => router.push("/")} />
-                    }
+                    */}
                     </label>
                 </div>
             </div>
-            <div className={`flex flex-col md:flex-row md:space-x-6 secondaryNav bg-white-50 ${!isHomePage ? "px-0 relative -tracking-[0.06em] -left-[2px] -top-[0px]" : "px-0 relative -tracking-[0.06em] -left-[2px] -top-[0px]"}`}>
+            <div className={`flex flex-col secondaryNav bg-white-50 px-0 relative -tracking-[0.06em] -left-[2px] -top-[0px]`}>
                 <ul className="secondaryNavHeader">
                     <li>
                         <div className="text-sm m-w-full overflow-x-auto overflow-y-auto">
                             <ul className={`dark:text-black text-xl flex subpixel-antialiased ${!isHomePage ? " text-red-400" : Scrolled ?  " text-black" :  " text-white"}`}> 
-                                <li className="pl-10 whitespace-nowrap">
-                                    <Link className={isHomePage ? Scrolled ?  buttonStyles.hpScrolled :  buttonStyles.hpTop : buttonStyles.secondaryGreen} href={"/PortFolio-All-Images"}>Toutes les images</Link>
+                                <li className="pl-7 whitespace-nowrap">
+                                    <Link className={isHomePage ? Scrolled ?  buttonStyles.hpScrolled :  buttonStyles.hpTop : buttonStyles.secondaryGreen} href={"/"}>Home</Link>
                                 </li>
-                                <li className="pl-10 whitespace-nowrap">
+                                <li className="pl-2 whitespace-nowrap">
+                                    <Link className={isHomePage ? Scrolled ?  buttonStyles.hpScrolled :  buttonStyles.hpTop : buttonStyles.secondaryGreen} href={"/PortFolio-All-Images"}>PortFolio</Link>
+                                </li>
+                                <li className="pl-2 whitespace-nowrap">
                                     <Link className={isHomePage ? Scrolled ?  buttonStyles.hpScrolled :  buttonStyles.hpTop : buttonStyles.secondaryGreen} href={"/Faq-All-You-Need-To-Know"}>Faq</Link>
                                 </li>                           
                             </ul>
@@ -106,8 +109,7 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                             isHomePage ? 
                             Scrolled ? "focus:outline-none btn btn-circle mx-2 bg-black" : "focus:outline-none btn btn-circle mx-2 bg-transparent" 
                             : 
-                            isCartPage ? "focus:outline-none btn btn-circle mx-2 opacity-50 cursor-not-allowed" : "focus:outline-none btn btn-circle mx-2"
-                            } 
+                            isCartPage ? "focus:outline-none btn btn-circle mx-2 opacity-50 cursor-not-allowed" : "focus:outline-none btn btn-circle mx-2"} 
                             aria-label="Logout">
                             <FaLockOpen className="text-white text-xl" />
                         </button>
@@ -116,8 +118,7 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                             isHomePage ? 
                             Scrolled ? "focus:outline-none btn btn-circle mx-2 bg-black" : "focus:outline-none btn btn-circle mx-2 bg-transparent" 
                             : 
-                            isCartPage ? "focus:outline-none btn btn-circle mx-2 opacity-50 cursor-not-allowed" : "focus:outline-none btn btn-circle mx-2"
-                        } 
+                            isCartPage ? "focus:outline-none btn btn-circle mx-2 opacity-50 cursor-not-allowed" : "focus:outline-none btn btn-circle mx-2"} 
                          aria-label="View Basket"
                          disabled={isCartPage}
                          >
@@ -133,18 +134,16 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                             isHomePage ? 
                             Scrolled ? "btn btn-circle mx-2 bg-black" : "btn btn-circle mx-2 bg-transparent" 
                             : "btn btn-circle mx-2"} aria-label="View My Orders"><CiDeliveryTruck className="text-white text-xl" /></button>
-                         
                         </div>
                             :
-                            <button onClick={() => router.push('/auth/login')} 
+                        <button onClick={() => router.push('/auth/login')} 
                             className={
                             isHomePage ? 
                             Scrolled ? "focus:outline-none btn btn-circle mx-2 bg-black" : "focus:outline-none btn btn-circle mx-2 bg-transparent" 
-                            : "focus:outline-none btn btn-circle mx-2"
-                        } 
-                                aria-label="Login">
-                                    <FaLock className="text-white text-xl" />
-                            </button>
+                            : "focus:outline-none btn btn-circle mx-2"} 
+                            aria-label="Login">
+                            <FaLock className="text-white text-xl" />
+                        </button>
                     }
                     {/* Overlay Panel */}
                     {isCartOpened && (

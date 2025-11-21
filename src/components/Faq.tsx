@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import Loading from '@/app/loading';
-
+import React, { useState } from 'react'
 
 export const faqData = [
     {
@@ -31,73 +29,71 @@ export const faqData = [
 
 export default function Faq({ userData }: { userData: any }) {
 
-    const [loading, setLoading] = useState(true)
+    /*const [loading, setLoading] = useState(true)*/
 
 
     return (  
-                            
-                            <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
-                            <div className="max-w-3xl mx-auto">
-                                {/* Header */}
-                                <div className="text-center mb-16">
-                                <h1 className="text-3xl font-light text-gray-900 sm:text-4xl mb-4">
-                                    Frequently Asked Questions
-                                </h1>
-                                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                                    Trouvez des réponses simples à vos questions concernant nos produits, nos services, et plus encore. 
-                                    Vous ne trouvez pas ce que vous cherchez ? Contactez moi et je serai ravi de vous renseigner.
-                                </p>
-                                </div>
+            <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto">
+                {/* Header */}
+                <div className="text-center mb-16">
+                <h1 className="text-3xl font-light text-gray-900 sm:text-4xl mb-4">
+                    Frequently Asked Questions
+                </h1>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Trouvez des réponses simples à vos questions concernant nos produits, nos services, et plus encore. 
+                    Vous ne trouvez pas ce que vous cherchez ? Contactez moi et je serai ravi de vous renseigner.
+                </p>
+                </div>
 
-                                {/* FAQ Accordion */}
-                                <div className="space-y-6">
-                                {faqData.map((faq, index) => (
-                                    <div key={index} className="border-b border-gray-200 pb-6">
-                                    <details className="group">
-                                        <summary className="flex justify-between items-center cursor-pointer list-none">
-                                        <h3 className="text-lg font-medium text-gray-900 pr-4">
-                                            {faq.question}
-                                        </h3>
-                                        <span className="flex-shrink-0 ml-2">
-                                            <svg 
-                                            className="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-200" 
-                                            fill="none" 
-                                            viewBox="0 0 24 24" 
-                                            stroke="currentColor"
-                                            >
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </span>
-                                        </summary>
-                                        <div className="mt-4 pl-2">
-                                        <p className="text-gray-600 leading-relaxed">
-                                            {faq.answer}
-                                        </p>
-                                        </div>
-                                    </details>
-                                    </div>
-                                ))}
-                                </div>
+                {/* FAQ Accordion */}
+                <div className="space-y-6">
+                {faqData.map((faq, index) => (
+                    <div key={index} className="border-b border-gray-200 pb-6">
+                    <details className="group">
+                        <summary className="flex justify-between items-center cursor-pointer list-none">
+                        <h3 className="text-lg font-medium text-gray-900 pr-4">
+                            {faq.question}
+                        </h3>
+                        <span className="flex-shrink-0 ml-2">
+                            <svg 
+                            className="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-200" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor"
+                            >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                        </summary>
+                        <div className="mt-4 pl-2">
+                        <p className="text-gray-600 leading-relaxed">
+                            {faq.answer}
+                        </p>
+                        </div>
+                    </details>
+                    </div>
+                ))}
+                </div>
 
-                                {/* Contact CTA */}
-                                <div className="mt-16 text-center bg-gray-50 rounded-lg p-8">
-                                <h3 className="text-xl font-light text-gray-900 mb-2">
-                                    Vous avez encore des questions ? J'ai sûrement des réponses.
-                                </h3>
-                                <p className="text-gray-600 mb-6">
-                                    Toute l'équipe tentera de vous renseigner du mieux qu'elle le peut :).
-                                </p>
-                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                    <button className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200">
-                                    Contact Support
-                                    </button>
-                                    <button className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200">
-                                    Retour
-                                    </button>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-
+                {/* Contact CTA */}
+                <div className="mt-16 text-center bg-gray-50 rounded-lg p-8">
+                <h3 className="text-xl font-light text-gray-900 mb-2">
+                    Vous avez encore des questions ? J'ai sûrement des réponses.
+                </h3>
+                <p className="text-gray-600 mb-6">
+                    Toute l'équipe tentera de vous renseigner du mieux qu'elle le peut :).
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                    Contact Support
+                    </button>
+                    <button className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200">
+                    Retour
+                    </button>
+                </div>
+                </div>
+            </div>
+            </div>
     )
 }                     

@@ -129,55 +129,30 @@ body {
 
 @media (max-width: 650px) {
   .navbar-end {
+    display:inline-flexbox;
     position: fixed;
-    justify-content: right;
+    top: 95px;
+    left: -10px;
   }
 }
 
 @media (max-width: 620px) {
-
-  .mainNav {
-    max-height: 80%;
-  }
-
   .top-menu-image-container img {
     max-width: 95%;
     width: 191px;
   }
-
   .card {
     max-width: 270px;
   }
-
-  .btn-login {
-    top: 0px;
-    margin-left: -20px;
-  }
-
   .product-details-text-container {
     margin-left: 0px;
   }
-  
 }
 
 @media (max-width: 833px) {
-
-  .secondaryNav {
-    position: relative;
-    top: -25px;
-    left: -33px;
-  }
-
   .navbar img {
     min-height: 130px;
     max-width: 250px;
   }
-
-  .navbar-end {
-    position: relative;
-    right: 435px;
-    top: 40px;
-  }
-
 }
 

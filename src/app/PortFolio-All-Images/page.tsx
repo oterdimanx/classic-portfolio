@@ -35,6 +35,10 @@ export default function Shop() {
   const categoryLoading = useSelector((state: RootState) => state.Admin.catLoading)
   const productLoading = useSelector((state: RootState) => state.Admin.productLoading)
   const [loading, setLoading] = useState(true)
+  const columnStyles = {
+      primary: "border-r-2 border-r-red-900 flex-initial w-[252px]",
+      none: "flex-initial w-[200px]",
+  }
 
   useEffect(() => {
     const userData = localStorage.getItem('user');
@@ -78,7 +82,7 @@ export default function Shop() {
         categoryLoading ? <Loading /> :
           <>
             <div className="flex h-full bg-white/95 text-black">
-            <div className="border-r-2 border-r-red-900 flex-initial w-[252px]">
+            <div className={columnStyles.none}>
               <p className="mt-3 pt-8 pb-1 pl-9 pr-8 flex-initial text-xl uppercase">Categories</p>
               <ul className="pl-9">
                 <li className="rounded-lg cursor-pointer pt-2 w-[80%] relative li-carrousel-element">
