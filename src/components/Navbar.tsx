@@ -77,7 +77,10 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                             <ul className={`dark:text-black text-xl flex subpixel-antialiased ${!isHomePage ? " text-red-400" : Scrolled ?  " text-black" :  " text-white"}`}> 
                                 <li className="pl-10 whitespace-nowrap">
                                     <Link className={isHomePage ? Scrolled ?  " btn text-black mx-2 bg-transparent hover:text-white" :  " btn text-white mx-2 bg-transparent" : "btn text-white mx-2"} href={"/PortFolio-All-Images"}>Voir toutes les images</Link>
-                                </li>                                
+                                </li>
+                                <li className="pl-10 whitespace-nowrap">
+                                    <Link className={isHomePage ? Scrolled ?  " btn text-black mx-2 bg-transparent hover:text-white" :  " btn text-white mx-2 bg-transparent" : "btn text-white "} href={"/Faq-All-You-Need-To-Know"}>Faq</Link>
+                                </li>                           
                             </ul>
                         </div>
                     </li>

@@ -3,17 +3,25 @@ import './styles/learn-more.css'
 import './styles/footer.css'
 import ClientProviders from '@/components/ClientProviders';
 import type { ReactNode } from 'react';
+import { x } from 'joi';
+import type { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Classic Portfolio Images Upload Device',
-  description: 'Firebase Images',
-  authors: [{ name: "Terdiman Olivier", url: 'https://www.reference-web.com' }],
+export const metadata: Metadata = {
+  title: 'Classic Portfolio - Images Upload Device - Welcome to my humble PortFolio :)',
+  description: 'Firebase Is My Images Back-End. Classic Portfolio Is Your Front-End. Discover Our FAQ Section evolution of the app, Troubleshooting, and all the services we can offer.',
+  authors: [{ name: "Terdiman Olivier", url: 'https://olivers-portfolio.terdiman.fr' }],
 }
-
+/*
+export const metadata: Metadata = {
+  title: 'Oliver\'s PortFolio - FAQ - Frequently Asked Questions',
+  description: 'Trouvez toutes les réponses à vos questions concernant ma boutique portfolio, et bien plus d\'informations encore.',
+  keywords: 'FAQ, help, support, shipping, returns, payments',
+};
+*/
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="fr">
+      <body style={{ overflowX: "hidden" }}>
         <ClientProviders>
           {children}
         </ClientProviders>
