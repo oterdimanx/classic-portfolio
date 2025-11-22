@@ -1,4 +1,3 @@
-// src/app/product/product-detail/[slug]/layout.tsx
 import type { Metadata, ResolvingMetadata } from 'next';
 
 // Remove the custom Props type and use inline types instead

@@ -1,22 +1,20 @@
 "use client"
 
-import React, { useState , useEffect } from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import Loading from './loading'
 import { useDispatch } from 'react-redux'
 import { setUserData } from '@/utils/UserDataSlice'
 import { CharacterAnimation } from "@/components/CharacterAnimation";
 import './styles/not-found.css'
 
-export default function Custom404() {
+export default function NotFound() {
     const dispatch = useDispatch();
-    const [loading, setLoading] = useState(true)
+
     useEffect(() => {
         const userData = localStorage.getItem('user');
         if (!userData) return;
         dispatch(setUserData(JSON.parse(userData)));
-        setLoading(false)
       }, [])
 
     return (
@@ -25,7 +23,6 @@ export default function Custom404() {
         <Navbar />
       </div>
           {
-            loading ? <Loading /> :
               <>
                 <div className="w-full bg-gray-50 text-black flex items-center flex-col justify-start font-[Poppin]">
                   <div className="flex items-center justify-center px-2 py-2 mb-2">
