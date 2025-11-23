@@ -127,15 +127,26 @@ body {
   animation: fadeIn 2s ease forwards;
 }
 
+@media (max-width: 449px) {
+  .menu-li {
+    padding-left: 0.3rem;
+  }
+}
+
 @media (max-width: 650px) {
   .navbar-end {
     display:inline-flexbox;
     position: fixed;
-    top: 100px;
+    top: 10px;
     left: 30px;
+    margin-left: 30px;
   }
   .mainNav{
     height: 150px;
+  }
+  .secondaryNav {
+    top: 20px;
+    left: 20px;
   }
 }
 
@@ -164,4 +175,3 @@ body {
     margin-left: 10px;
   }
 }
-

@@ -6,10 +6,12 @@ import { usePathname, useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { RootState } from '@/Store/store';
 import { useSelector } from 'react-redux';
-import { FaCartArrowDown, FaLock, FaLockOpen } from 'react-icons/fa';
+import { FaCampground, FaCartArrowDown, FaHouseUser, FaImage, FaImages, FaLock, FaLockOpen, FaPassport, FaQuestionCircle, FaRegQuestionCircle } from 'react-icons/fa';
 import { CiDeliveryTruck } from 'react-icons/ci'
 import { MdFavorite } from 'react-icons/md';
 import CartOverlay from './CartOverlay';
+import { BsFillArrowUpLeftSquareFill, BsFillPatchQuestionFill } from 'react-icons/bs';
+import { TbFlagQuestion } from 'react-icons/tb';
 
 interface NavbarProps {
     isHomePage?: boolean;
@@ -80,31 +82,55 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                     </label>
                 </div>
             </div>
-            <div className={`flex flex-col secondaryNav bg-white-50 px-0 relative -tracking-[0.06em] -left-[2px] -top-[0px]`}>
+            <div className={`flex flex-col m-auto secondaryNav bg-white-50 px-0 relative -tracking-[0.06em] ml-[30px] w-[30%]`}>
                 <ul className="secondaryNavHeader">
                     <li>
                         <div className="text-sm m-w-full overflow-x-auto overflow-y-auto">
                             <ul className={`dark:text-black text-xl flex subpixel-antialiased ${!isHomePage ? " text-red-400" : Scrolled ?  " text-black" :  " text-white"}`}> 
-                                <li className="pl-7 whitespace-nowrap">
-                                    <Link className={isHomePage ? Scrolled ?  buttonStyles.hpScrolled :  buttonStyles.hpTop : buttonStyles.secondaryGreen} href={"/"}>Home</Link>
+                                <li>
+                                    <button title="Home" onClick={() => router.push("/")} 
+                                    className={
+                                        isHomePage ? 
+                                        Scrolled ? "focus:outline-none btn btn-circle mx-2 bg-black" : "focus:outline-none btn btn-circle mx-2 bg-transparent" 
+                                        : 
+                                        isCartPage ? "focus:outline-none btn btn-circle mx-2 opacity-50 cursor-not-allowed" : "focus:outline-none btn btn-circle mx-2"} 
+                                        aria-label="Home">
+                                        <FaCampground className="text-white text-xl" />
+                                    </button>
                                 </li>
-                                <li className="pl-2 whitespace-nowrap">
-                                    <Link className={isHomePage ? Scrolled ?  buttonStyles.hpScrolled :  buttonStyles.hpTop : buttonStyles.secondaryGreen} href={"/PortFolio-All-Images"}>PortFolio</Link>
-                                </li>
-                                <li className="pl-2 whitespace-nowrap">
-                                    <Link className={isHomePage ? Scrolled ?  buttonStyles.hpScrolled :  buttonStyles.hpTop : buttonStyles.secondaryGreen} href={"/Faq-All-You-Need-To-Know"}>Faq</Link>
-                                </li>                           
+                                <li>
+                                    <button title="PortFolio All Images" onClick={() => router.push("/PortFolio-All-Images")} 
+                                    className={
+                                        isHomePage ? 
+                                        Scrolled ? "focus:outline-none btn btn-circle mx-2 bg-black" : "focus:outline-none btn btn-circle mx-2 bg-transparent" 
+                                        : 
+                                        isCartPage ? "focus:outline-none btn btn-circle mx-2 opacity-50 cursor-not-allowed" : "focus:outline-none btn btn-circle mx-2"} 
+                                        aria-label="PortFolio-All-Images">
+                                        <FaImages className="text-white text-xl" />
+                                    </button>
+                                </li>  
+                                <li>
+                                    <button title="Faq All You Need To Know" onClick={() => router.push("/Faq-All-You-Need-To-Know")} 
+                                    className={
+                                        isHomePage ? 
+                                        Scrolled ? "focus:outline-none btn btn-circle mx-2 bg-black" : "focus:outline-none btn btn-circle mx-2 bg-transparent" 
+                                        : 
+                                        isCartPage ? "focus:outline-none btn btn-circle mx-2 opacity-50 cursor-not-allowed" : "focus:outline-none btn btn-circle mx-2"} 
+                                        aria-label="Faq-All-You-Need-To-Know">
+                                        <FaRegQuestionCircle className="text-white text-xl" />
+                                    </button>
+                                </li>  
                             </ul>
                         </div>
                     </li>
                 </ul>
             </div>
-            <div className="navbar-end m-auto w-[50%] ml-10">
+            <div className="m-auto flex flex-auto mr-[80px] navbar-end">
                 <div className="flex-none">
                     {
                         user ?
                         <div className="flex">
-                         <button onClick={handleLogout} 
+                         <button title="Logout" onClick={handleLogout} 
                          className={
                             isHomePage ? 
                             Scrolled ? "focus:outline-none btn btn-circle mx-2 bg-black" : "focus:outline-none btn btn-circle mx-2 bg-transparent" 
@@ -113,7 +139,7 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                             aria-label="Logout">
                             <FaLockOpen className="text-white text-xl" />
                         </button>
-                         <button onClick={()=> {!isCartOpened && !isCartPage && setIsCartOpened(true)}} 
+                         <button title="Voir mon panier" onClick={()=> {!isCartOpened && !isCartPage && setIsCartOpened(true)}} 
                          className={
                             isHomePage ? 
                             Scrolled ? "focus:outline-none btn btn-circle mx-2 bg-black" : "focus:outline-none btn btn-circle mx-2 bg-transparent" 
@@ -124,19 +150,19 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                          >
                             <FaCartArrowDown className="text-white text-xl" />
                          </button>
-                         <button onClick={() => router.push("/bookmark")} 
+                         <button title="Mes favoris" onClick={() => router.push("/bookmark")} 
                          className={
                             isHomePage ? 
                             Scrolled ? "btn btn-circle mx-2 bg-black" : "btn btn-circle mx-2 bg-transparent" 
                             : "btn btn-circle mx-2"} aria-label="View My Bookmarks"><MdFavorite className="text-white text-xl" /></button>
-                         <button onClick={() => router.push("/order/view-orders")} 
+                         <button title="Voir mes commandes" onClick={() => router.push("/order/view-orders")} 
                          className={
                             isHomePage ? 
                             Scrolled ? "btn btn-circle mx-2 bg-black" : "btn btn-circle mx-2 bg-transparent" 
                             : "btn btn-circle mx-2"} aria-label="View My Orders"><CiDeliveryTruck className="text-white text-xl" /></button>
                         </div>
                             :
-                        <button onClick={() => router.push('/auth/login')} 
+                        <button title="S'authentifier" onClick={() => router.push('/auth/login')} 
                             className={
                             isHomePage ? 
                             Scrolled ? "focus:outline-none btn btn-circle mx-2 bg-black" : "focus:outline-none btn btn-circle mx-2 bg-transparent" 
