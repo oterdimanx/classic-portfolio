@@ -5,8 +5,8 @@ import { useDispatch } from 'react-redux'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { setUserData } from '@/utils/UserDataSlice'
-import Loading from '@/app/loading';
-import Faq from '@/components/Faq';
+import Loading from '@/app/loading'
+import Contact from '@/components/Contact'
 
 export default function Page() {
 
@@ -15,9 +15,7 @@ export default function Page() {
     const [userData, setUserDataState] = useState<string | null>(null)
 
     useEffect(() => {
-
-        const userDataFromStorage = localStorage.getItem('user');
-        //if (!userDataFromStorage) return;
+        const userDataFromStorage = localStorage.getItem('user')
         if (userDataFromStorage) {
             dispatch(setUserData(JSON.parse(userDataFromStorage)))
             setUserDataState(userDataFromStorage)
@@ -33,7 +31,7 @@ export default function Page() {
                 {
                     loading ? <Loading /> :
                     <>
-                    <Faq userData={userData} />
+                    <Contact />
                     </>
                 }
                 <Footer />

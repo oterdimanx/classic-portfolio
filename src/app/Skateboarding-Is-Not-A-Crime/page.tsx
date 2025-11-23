@@ -28,7 +28,7 @@ export default function Page() {
           {
               <>
                 <div className="bg-white px-2">
-                    <div>
+                    <div className="w-full">
                         {
                             loading ? <Loading /> :
                             <>

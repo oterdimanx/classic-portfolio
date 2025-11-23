@@ -1,5 +1,5 @@
 {
-  "name": "portfolio backend",
+  "name": "portfolio-backend",
   "version": "1.0.0",
   "private": true,
   "browserslist": [
@@ -12,7 +12,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "preinstall": "npm install --platform=linux --arch=x64 sharp"
+    "preinstall": "npm install --platform=linux --arch=x64 sharp",
+    "backup": "node scripts/backup.js",
+    "backup:dev": "MONGODB_URI=your-dev-connection-string node scripts/backup.js",
+    "backup:prod": "MONGODB_URI=your-production-connection-string node scripts/backup.js",
+    "restore": "node scripts/restore.js",
+    "restore:latest": "node scripts/restore.js ./backups/$(ls -t ./backups | head -1)",
+    "discover": "node scripts/discover-dbs.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
@@ -28,6 +34,7 @@
     "autoprefixer": "10.4.14",
     "bcryptjs": "^2.4.3",
     "daisyui": "^2.52.0",
+    "dotenv": "^17.2.3",
     "encoding": "^0.1.13",
     "eslint": "8.39.0",
     "eslint-config-next": "^15.2.1",

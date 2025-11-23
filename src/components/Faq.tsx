@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import React from 'react'
 
 export const faqData = [
     {
@@ -28,9 +29,8 @@ export const faqData = [
   ];
 
 export default function Faq({ userData }: { userData: any }) {
-
-    /*const [loading, setLoading] = useState(true)*/
-
+  
+    const router = useRouter()
 
     return (  
             <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
@@ -38,7 +38,7 @@ export default function Faq({ userData }: { userData: any }) {
                 {/* Header */}
                 <div className="text-center mb-16">
                 <h1 className="text-3xl font-light text-gray-900 sm:text-4xl mb-4">
-                    Frequently Asked Questions
+                    Foire Aux Questions
                 </h1>
                 <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                     Trouvez des réponses simples à vos questions concernant nos produits, nos services, et plus encore. 
@@ -85,10 +85,10 @@ export default function Faq({ userData }: { userData: any }) {
                     Toute l'équipe tentera de vous renseigner du mieux qu'elle le peut :).
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                    <button onClick={() => router?.push('/Contact')} className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200">
                     Contact Support
                     </button>
-                    <button className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200">
+                    <button onClick={() => router?.push('/')} className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200">
                     Retour
                     </button>
                 </div>

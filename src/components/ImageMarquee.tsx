@@ -11,7 +11,6 @@ const ImageMarquee = ({ urls }: ImageMarqueeProps) => {
   const totalHeight = useRef(0);
   const [isPageScrollAllowed, setIsPageScrollAllowed] = useState(false);
 
-
   // Prevent default scroll behavior for the images, but allow it once the user reaches the end
   const handleScroll = (e: React.WheelEvent) => {
     e.preventDefault(); // Stop the page scroll behavior
@@ -46,13 +45,10 @@ const ImageMarquee = ({ urls }: ImageMarqueeProps) => {
   // Calculate the total height based on the number of images
   useEffect(() => {
 
-
     if(urls?.length > 0){
       totalHeight.current = urls.length * window.innerHeight; // Height of images without extra margin
     }
 
-
-    
   }, [urls]);
 
   // Block page scrolling globally by listening to the wheel event on window

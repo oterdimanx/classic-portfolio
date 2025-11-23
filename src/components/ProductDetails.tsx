@@ -200,7 +200,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         <h1 className="text-2xl font-bold">{product.title}</h1>
 
         <div className="text-2xl font-semibold text-green-700">
-          ${product.price.toFixed(2)}
+          &euro;{product.price.toFixed(2)}
         </div>
 
         <div>

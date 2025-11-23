@@ -78,7 +78,7 @@ export default function Lookbook() {
     urls = urls[0]?.filter((elem: string) => '' !== elem)
 
     return (  
-                        <div className="grid container">
+                        <div className="grid container min-w-full">
                         <div>
                             <div className="lookbook-container">
                                 <div key="leftcol-lbook"></div>
