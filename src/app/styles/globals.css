@@ -140,6 +140,7 @@ body {
     top: 10px;
     left: 30px;
     margin-left: 30px;
+    z-index: 10;
   }
   .mainNav{
     height: 150px;
@@ -173,5 +174,21 @@ body {
 @media (max-width: 1005px) {
   .product-details-text-container {
     margin-left: 10px;
+  }
+}
+
+/* Nuclear option for cart overlay */
+@media (max-width: 768px) {
+  [class*="fixed"][class*="right-0"][class*="bg-white"] {
+    z-index: 9999 !important;
+  }
+  
+  [class*="fixed"][class*="inset-0"] {
+    z-index: 9998 !important;
+  }
+  
+  /* Force all product images behind on mobile */
+  .border.rounded.overflow-hidden.relative img {
+    z-index: 1 !important;
   }
 }
