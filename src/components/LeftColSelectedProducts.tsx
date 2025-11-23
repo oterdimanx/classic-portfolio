@@ -68,13 +68,13 @@ export default function LeftColSelectedProducts(props: any) {
     var ii = 0;
 
     return (
-        <div className="w-full h-screen dark:text-black bg-gray-50 py-4 px-2 font-[Poppin]">
+        <div className="w-full h-screen dark:text-black bg-gray-50 py-4 px-2 font-[Poppin] overflow-auto">
             <div className={`w-full h-5/6 perspective-1200 ${isFlipped ? 'pointer-events-none' : ''}`}>
                 <div className={`relative w-full h-full transition-transform duration-500 ease-in-out transform-style-preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}>
                     
                     {/* Front Side - No opacity manipulation needed */}
                     <div className="absolute w-full h-full backface-hidden">
-                        <div className="w-full h-full flex items-start justify-center flex-wrap overflow-auto">
+                        <div className="w-full h-full flex items-start justify-center flex-wrap">
                             {prodLoading ? (
                                 <div className="w-full h-96"><Loading /></div>
                             ) : (

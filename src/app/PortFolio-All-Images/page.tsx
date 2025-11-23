@@ -39,7 +39,7 @@ export default function Shop() {
     const buttonStyles = {
         primary: "bg-gray-900 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-all duration-200 shadow-sm hover:shadow-md text-sm",
         secondaryGray: "btn font-semibold mt-2 border border-gray-300 bg-white text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-green-50 transition-all duration-200 text-sm",
-        secondaryGreen: "btn mx-1 border border-gray-300 bg-white text-gray-700 px-2 py-1.5 rounded-lg hover:bg-green-50 transition-all duration-200 w-full text-xs",
+        secondaryGreen: "btn mx-1 border border-gray-300 bg-white text-gray-700 px-3 py-2 rounded-lg hover:bg-green-50 transition-all duration-200 w-full text-xs md:text-sm",
     };
 
     useEffect(() => {
@@ -114,22 +114,22 @@ export default function Shop() {
                         <div className={`
                             ${isAccordionOpen ? 'block' : 'hidden'} 
                             md:block 
-                            bg-white border-r border-gray-200 
+                            bg-white
                             md:w-48 lg:w-56 
                             transition-all duration-300
                             overflow-hidden
                         `}>
                             <div className="p-3 md:p-4">
-                                {/* All Categories Button
+                                {/* All Categories Button */}
                                 <button
                                     className={`${buttonStyles.secondaryGreen} mb-3 ${categoryId === 'all' ? 'bg-green-100 border-green-400' : ''}`}
                                     onClick={() => handleCategoryClick('all')}
                                 >
                                     All Products
                                 </button>
-                                */}
+
                                 {/* Categories List */}
-                                <div className="max-h-[60vh] md:max-h-[70vh] overflow-y-auto">
+                                <div className="max-h-[60vh] md:max-h-[70vh] overflow-hidden">
                                     <ul className="space-y-1">
                                         {catData?.length < 1 ? (
                                             <li className="text-center py-3 text-gray-500 text-sm">
@@ -154,7 +154,6 @@ export default function Shop() {
                                     </ul>
                                 </div>
 
-                                {/* Hardcoded Skate Button */}
                                 <button className={`${buttonStyles.secondaryGray} w-full mt-3 text-xs md:text-sm`}>
                                     <Link 
                                         href="/Skateboarding-Is-Not-A-Crime"
