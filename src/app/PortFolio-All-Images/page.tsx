@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Loading from '../loading'
@@ -125,7 +125,7 @@ export default function Shop() {
                                     className={`${buttonStyles.secondaryGreen} mb-3 ${categoryId === 'all' ? 'bg-green-100 border-green-400' : ''}`}
                                     onClick={() => handleCategoryClick('all')}
                                 >
-                                    All Products
+                                    Toutes les images
                                 </button>
 
                                 {/* Categories List */}
@@ -154,6 +154,7 @@ export default function Shop() {
                                     </ul>
                                 </div>
 
+                                {/* Hardcoded Skate Button */}
                                 <button className={`${buttonStyles.secondaryGray} w-full mt-3 text-xs md:text-sm`}>
                                     <Link 
                                         href="/Skateboarding-Is-Not-A-Crime"

@@ -24,9 +24,10 @@ type ProductData = {
 export default function LeftColSelectedProducts(props: any) {
     const [isFlipped, setIsFlipped] = useState(false);
     const [currentProducts, setCurrentProducts] = useState<any[]>([]);
-    const [shouldAnimate, setShouldAnimate] = useState(false); // Control when to animate
+    const [shouldAnimate, setShouldAnimate] = useState(false);
     const isFirstRender = useRef(true);
-
+    const containerRef = useRef<HTMLDivElement>(null);
+    //const [opacity, setOpacity] = useState(1);
     const prodData = useSelector((state: RootState) => state.Admin.product);
     const prodLoading = useSelector((state: RootState) => state.Admin.productLoading);
 
@@ -39,18 +40,46 @@ export default function LeftColSelectedProducts(props: any) {
         });
         return CategoryProducts?.slice(0, 50) || [];
     }, [prodData, props.categoryId]);
-
+/*
+    useEffect(() => {
+        if (filteredProducts.length > 0 && JSON.stringify(currentProducts) !== JSON.stringify(filteredProducts)) {
+            // Fade out
+            setOpacity(0.3);
+            
+            // Start flip after fade starts
+            const flipTimer = setTimeout(() => {
+                setIsFlipped(true);
+                
+                // Update products mid-flip
+                const updateTimer = setTimeout(() => {
+                    setCurrentProducts(filteredProducts);
+                    setIsFlipped(false);
+                    
+                    // Fade in after flip completes
+                    const fadeInTimer = setTimeout(() => {
+                        setOpacity(1);
+                    }, 200);
+                    
+                    return () => clearTimeout(fadeInTimer);
+                }, 350); // Mid-flip timing
+                
+                return () => clearTimeout(updateTimer);
+            }, 150); // Initial delay
+            
+            return () => clearTimeout(flipTimer);
+        } else {
+            setCurrentProducts(filteredProducts);
+        }
+    }, [filteredProducts]);
+*/
     useEffect(() => {
         if (isFirstRender.current) {
-            // First load - set products without animation
             setCurrentProducts(filteredProducts);
             isFirstRender.current = false;
-            // Enable animations for future changes
             setTimeout(() => setShouldAnimate(true), 100);
             return;
         }
 
-        // Only animate if shouldAnimate is true (after first render)
         if (shouldAnimate && filteredProducts.length > 0 && JSON.stringify(currentProducts) !== JSON.stringify(filteredProducts)) {
             setIsFlipped(true);
             
@@ -63,18 +92,25 @@ export default function LeftColSelectedProducts(props: any) {
         } else {
             setCurrentProducts(filteredProducts);
         }
-    }, [filteredProducts, shouldAnimate]);
 
+    }, [filteredProducts, shouldAnimate]);
     var ii = 0;
 
     return (
-        <div className="w-full h-screen dark:text-black bg-gray-50 py-4 px-2 font-[Poppin]">
-            <div className={`w-full h-5/6 perspective-1200 ${isFlipped ? 'pointer-events-none' : ''}`}>
+        <div 
+            ref={containerRef}
+            className="w-full h-full bg-gray-50 py-4 px-2 font-[Poppin] overflow-auto" // Added overflow-auto here
+            style={{ 
+                WebkitOverflowScrolling: 'touch', // Better scrolling on iOS/Chrome
+                transform: 'translateZ(0)' // Force hardware acceleration
+            }}
+        >
+            <div className={`w-full h-full perspective-1200 ${isFlipped ? 'pointer-events-none' : ''}`}>
                 <div className={`relative w-full h-full transition-transform duration-500 ease-in-out transform-style-preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}>
                     
-                    {/* Front Side - No opacity manipulation needed */}
-                    <div className="absolute w-full h-full backface-hidden">
-                        <div className="w-full h-full flex items-start justify-center flex-wrap overflow-auto">
+                    {/* Front Side */}
+                    <div className="w-full h-full backface-hidden">
+                        <div className="w-full h-full flex items-start justify-center flex-wrap">
                             {prodLoading ? (
                                 <div className="w-full h-96"><Loading /></div>
                             ) : (
@@ -100,7 +136,7 @@ export default function LeftColSelectedProducts(props: any) {
                         </div>
                     </div>
 
-                    {/* Back Side - Only show during flip */}
+                    {/* Back Side */}
                     <div className="absolute w-full h-full backface-hidden rotate-y-180 flex items-center justify-center bg-white/90">
                         <div className="text-center animate-pulse">
                             <div className="text-3xl mb-2">✨</div>
@@ -125,6 +161,12 @@ export default function LeftColSelectedProducts(props: any) {
                 }
                 .transition-transform {
                     transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                }
+                
+                /* Force smooth scrolling in Chrome */
+                .overflow-auto {
+                    -webkit-overflow-scrolling: touch;
+                    overflow-anchor: none;
                 }
             `}</style>
         </div>
