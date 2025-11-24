@@ -1,17 +1,14 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
-import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { RootState } from '@/Store/store';
 import { useSelector } from 'react-redux';
-import { FaCampground, FaCartArrowDown, FaHouseUser, FaImage, FaImages, FaLock, FaLockOpen, FaPassport, FaQuestionCircle, FaRegQuestionCircle } from 'react-icons/fa';
+import { FaCampground, FaCartArrowDown, FaImages, FaLock, FaLockOpen, FaRegQuestionCircle } from 'react-icons/fa';
 import { CiDeliveryTruck } from 'react-icons/ci'
 import { MdFavorite } from 'react-icons/md';
 import CartOverlay from './CartOverlay';
-import { BsFillArrowUpLeftSquareFill, BsFillPatchQuestionFill } from 'react-icons/bs';
-import { TbFlagQuestion } from 'react-icons/tb';
 
 interface NavbarProps {
     isHomePage?: boolean;
@@ -165,7 +162,7 @@ export default function Navbar( {isHomePage = false} : NavbarProps ) {
                         <button title="S'authentifier" onClick={() => router.push('/auth/login')} 
                             className={
                             isHomePage ? 
-                            Scrolled ? "focus:outline-none btn btn-circle mx-2 bg-black" : "focus:outline-none btn btn-circle mx-2 bg-transparent" 
+                            Scrolled ? "focus:outline-none btn btn-circle mx-2 bg-black lock" : "focus:outline-none btn btn-circle mx-2 bg-transparent lock" 
                             : "focus:outline-none btn btn-circle mx-2"} 
                             aria-label="Login">
                             <FaLock className="text-white text-xl" />

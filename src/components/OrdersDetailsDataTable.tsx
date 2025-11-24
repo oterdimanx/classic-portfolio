@@ -92,17 +92,17 @@ export default function OrdersDetailsDataTable() {
 
   const columns = [
     {
-      name: 'Order ID',
+      name: 'Identifiant de Commande',
       selector: (row: Order) => row?._id,
       sortable: true,
     },
     {
-      name: 'Total Price',
+      name: 'Prix Total',
       selector: (row: Order) => row?.totalPrice,
       sortable: true,
     },
     {
-      name: 'Delivered',
+      name: 'Livrée',
       selector: (row: Order) => row?.isDelivered ? 'Yes' : 'No',
       sortable: true,
     },
@@ -137,7 +137,7 @@ export default function OrdersDetailsDataTable() {
         key={'ThisOrdersData'}
         pagination
         keyField="id"
-        title={`Liste des Commandes`}
+        title={`Toutes vos commandes sont listées ici.`}
         fixedHeader
         fixedHeaderScrollHeight='700px'
         selectableRows
@@ -145,12 +145,12 @@ export default function OrdersDetailsDataTable() {
         persistTableHead
         subHeader
         subHeaderComponent={
-          <input className='w-60 dark:bg-transparent py-2 px-2  outline-none  border-b-2 border-orange-600' type={"search"}
+          <input className='w-60 dark:bg-transparent py-2 px-2 outline-none border-b-2 border-orange-600' type={"search"}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder={"Orders ID"} />
+            placeholder={"Identifiant de Commande"} />
         }
-        className="bg-white px-4 h-5/6 "
+        className="bg-white px-4 h-4/6 "
       />
     </div>
   )

@@ -3,6 +3,10 @@ import React from 'react'
 
 export const faqData = [
     {
+      question: "Quel est le but de ce site ? On ne comprend pas tout.",
+      answer: "Ce site est mon portfolio. J'y partage des images, et des vidéos pour l'essentiel. Je mets mes images à disposition ou à la vente pour permettre à ceux qui aiment mon travail de me soutenir et de montrer de l'intérêt pour mes humbles créations. Je partage également mes vidéos de skate. L'idée de ces pages est née suite à la démocratisation des outils d'IA générative. En découvrant ces outils j'ai créé un nombre considérable d'images que je souhaite partager avec mon entourage, pour leur côté loufoque et souvent onirique (en parlant des images, pas de mon entourage)."
+    },
+    {
       question: "Combien de temps prendra la livraison ?",
       answer: "Les produits en vente sur ce site étant virtuels, la livraison sera immédiate. En tout cas tant qu'il s'agit d'images. Si vous le souhaitez, je peux vous fournir la version de l'image achetée en haute définition (le poids de telles images est trop important pour être envoyées sur un cloud sans que la facture devienne rapidement salée.)."
     },

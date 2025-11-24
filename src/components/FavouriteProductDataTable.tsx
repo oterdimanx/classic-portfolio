@@ -59,33 +59,6 @@ export default function FavouriteProductDataTable() {
         setFilteredData(bookmarkData);
     }, [bookmarkData])
 
-/*
-    const columns = [
-        {
-            name: 'Product Name',
-            selector: (row: BookmarkItem) => <><Link href={`/product/product-detail/${row?.productID?.productSlug}`} title={row?.productID?.productName}>{row?.productID?.productName}</Link></>,
-            sortable: true,
-        },
-        {
-            name: 'Price',
-            selector: (row: BookmarkItem) => row?.productID?.productPrice,
-            sortable: true,
-        },
-        {
-            name: 'Image',
-            cell: (row: BookmarkItem) => <><Link href={`/product/product-detail/${row?.productID?.productSlug}`} title={row?.productID?.productName}><Image src={row?.productID?.productImage || '/pants.png'} alt='No Image Found' className='py-2' width={100} height={100} /></Link></>,
-        },
-        {
-            name: 'Action',
-            cell: (row: BookmarkItem) => (
-                <div className='flex items-start justify-start px-2 h-20'>
-                    <button onClick={() => handleDeleteProduct(row?._id)} className=' w-20 py-2 mx-2 text-xs text-red-600 hover:text-white my-2 hover:bg-red-600 border border-red-600 rounded transition-all duration-700'>Delete</button>
-                </div>
-            )
-        },
-
-    ];
-*/
     const columns = [
         {
             name: 'Product Name',
@@ -112,7 +85,7 @@ export default function FavouriteProductDataTable() {
         {
             name: 'Action',
             cell: (row: BookmarkItem) => (
-                <div className='flex items-start justify-start px-2 h-20'>
+                <div className='flex items-start justify-start px-2 h-30'>
                     <button onClick={() => handleDeleteProduct(row?._id)} className=' w-20 py-2 mx-2 text-xs text-red-600 hover:text-white my-2 hover:bg-red-600 border border-red-600 rounded transition-all duration-700'>Delete</button>
                 </div>
             )
@@ -171,7 +144,7 @@ export default function FavouriteProductDataTable() {
                 key={'ThisProductData'}
                 pagination
                 keyField="id"
-                title={`Liste de Favoris`}
+                title={`Cliquez sur un élément de la liste pour retrouver facilement son emplacement.`}
                 fixedHeader
                 fixedHeaderScrollHeight='750px'
                 selectableRows
@@ -184,7 +157,7 @@ export default function FavouriteProductDataTable() {
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder={"Tri par nom"} />
                 }
-                className="bg-white px-4 h-5/6 favorite-product-data-table"
+                className="bg-white px-4 h-4/6 favorite-product-data-table"
                 theme="myCustomTheme"
             />
         </div>
