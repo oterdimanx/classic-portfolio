@@ -137,7 +137,7 @@ export default function LeftColSelectedProducts(props: any) {
                     </div>
 
                     {/* Back Side */}
-                    <div className="absolute w-full h-full backface-hidden rotate-y-180 flex items-center justify-center bg-white/90">
+                    <div className="absolute w-full backface-hidden rotate-y-180 flex items-center justify-center bg-white/90">
                         <div className="text-center animate-pulse">
                             <div className="text-3xl mb-2">✨</div>
                             <p className="text-gray-600">Loading...</p>

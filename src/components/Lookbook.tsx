@@ -5,6 +5,7 @@ import { setLookbookData, setLookbookLoading } from '@/utils/AdminSlice'
 import Loading from '@/app/loading';
 import { get_all_lookbooks } from '@/Services/Admin/lookbook';
 import ImageMarquee from './ImageMarquee';
+import MultiMarquee from './MultiMarquee';
 import Link from 'next/link';
 
 /*
@@ -117,7 +118,7 @@ export default function Lookbook() {
                                                     </div>
                                                     </section>
                                                 :
-                                                <ImageMarquee urls={urls} />
+                                                <MultiMarquee urls={urls} />
                                             }
                                         </>
                                     }
